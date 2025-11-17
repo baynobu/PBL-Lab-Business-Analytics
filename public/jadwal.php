@@ -58,5 +58,10 @@ $data = Peminjaman::all();
         color: #0A2A43 !important;
     }
 </style>
+<div class="container mb-5">
+    <div class="d-grid mt-3">
+        <a href="index.php" class="btn btn-secondary btn-lg rounded-pill fw-bold shadow-sm">Kembali</a>
+    </div>
+</div>
 
 <?php include "../views/layouts/footer.php"; ?>

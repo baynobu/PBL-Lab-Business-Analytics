@@ -10,25 +10,25 @@ if (!$settings) {
     $settings = [
         'site_name' => '',
         'footer_text' => '',
-        'logo' => ''
+        'logo' => '',
+        'copyright_text' => ''
     ];
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $site_name = $_POST['site_name'];
     $footer_text = $_POST['footer_text'];
+    $copyright_text = $_POST['copyright_text'] ?? '';
 
     // Cek jika upload logo
     if (!empty($_FILES['logo']['name'])) {
         $logo = $_FILES['logo']['name'];
         $tmp = $_FILES['logo']['tmp_name'];
-
         move_uploaded_file($tmp, "../public/uploads/logo/" . $logo);
-
-        Settings::update($site_name, $footer_text, $logo);
+        Settings::update($site_name, $footer_text, $logo, $copyright_text);
         logActivity("Mengubah pengaturan website + logo baru");
     } else {
-        Settings::update($site_name, $footer_text);
+        Settings::update($site_name, $footer_text, null, $copyright_text);
         logActivity("Mengubah pengaturan website");
     }
 
@@ -54,6 +54,10 @@ include "../views/layouts/header.php";
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Footer Text</label>
                             <input type="text" name="footer_text" class="form-control rounded-pill" value="<?= htmlspecialchars($settings['footer_text']) ?>" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Copyright (Footer)</label>
+                            <input type="text" name="copyright_text" class="form-control rounded-pill" value="<?= htmlspecialchars($settings['copyright_text'] ?? '') ?>" placeholder="Contoh: © 2025 Laboratorium Business Analytics. All rights reserved.">
                         </div>
                         <div class="mb-3">
                             <label class="form-label fw-semibold">Logo Saat Ini:</label><br>

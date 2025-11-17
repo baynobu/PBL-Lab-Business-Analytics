@@ -68,6 +68,9 @@ include "../views/layouts/header.php";
               </button>
             </div>
           </form>
+          <div class="d-grid mt-3">
+            <a href="index.php" class="btn btn-secondary btn-lg rounded-pill fw-bold shadow-sm">Kembali</a>
+          </div>
         </div>
       </div>
     </div>

@@ -18,7 +18,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $deskripsi = $_POST['deskripsi'] ?? '';
     $gambar = $galeri['gambar'];
 
-    // Handle upload gambar baru jika ada
     if (!empty($_FILES['gambar']['name'])) {
         $targetDir = "../public/uploads/galeri/";
         $fileName = time() . '_' . basename($_FILES['gambar']['name']);
@@ -30,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    if (Galeri::update($id, $judul, $tanggal, $gambar, $deskripsi)) {
+    if (Galeri::update($id, $judul, $deskripsi, $tanggal, $gambar)) {
         $message = "<div class='alert alert-success'>Data galeri berhasil diupdate.</div>";
         $galeri = Galeri::find($id); // refresh data
     } else {
@@ -71,6 +70,7 @@ include "../views/layouts/header.php";
                             <button type="submit" class="btn btn-accent btn-lg rounded-pill fw-bold shadow-sm">
                                 <i class="bi bi-save me-2"></i>Simpan Perubahan
                             </button>
+                            <a href="galeri_manage.php" class="btn btn-secondary btn-lg rounded-pill fw-bold shadow-sm mt-2">Kembali</a>
                         </div>
                     </form>
                 </div>

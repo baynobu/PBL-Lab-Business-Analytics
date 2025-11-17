@@ -61,7 +61,7 @@ include "../views/layouts/header.php";
         <input type="file" name="foto" class="form-control">
     </div>
     <button type="submit" class="btn btn-success">Update</button>
-    <a href="dosen_manage.php" class="btn btn-secondary">Kembali</a>
 </form>
 
 <?php include "../views/layouts/footer.php"; ?>
+<a href="dosen_manage.php" class="btn btn-secondary mt-2">Kembali</a>

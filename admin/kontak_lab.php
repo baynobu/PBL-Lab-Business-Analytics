@@ -68,6 +68,7 @@ include "../views/layouts/header.php";
                             <button type="submit" class="btn btn-accent btn-lg rounded-pill fw-bold shadow-sm">
                                 <i class="bi bi-save me-2"></i>Simpan Kontak
                             </button>
+                            <a href="dashboard.php" class="btn btn-secondary btn-lg rounded-pill fw-bold shadow-sm mt-2">Kembali</a>
                         </div>
                     </form>
                 </div>

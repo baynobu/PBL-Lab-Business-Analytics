@@ -43,3 +43,4 @@ include "../views/layouts/header.php";
 </form>
 
 <?php include "../views/layouts/footer.php"; ?>
+<a href="admin_manage.php" class="btn btn-secondary mt-2">Kembali</a>

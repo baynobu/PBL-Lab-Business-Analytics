@@ -33,7 +33,13 @@ if (!$S) {
       <!-- Kontak info dihapus, sekarang ada di section kontak halaman utama -->
     </div>
     <hr class="border-light mt-4 mb-3">
-    <div class="text-center small">&copy; <?= date('Y') ?> <?= htmlspecialchars($S['site_name'] ?? 'Lab Business Analytics') ?>. All rights reserved.</div>
+    <div class="text-center small">
+      <?php if (!empty($S['copyright_text'])): ?>
+        <?= htmlspecialchars($S['copyright_text']) ?>
+      <?php else: ?>
+        &copy; <?= date('Y') ?> <?= htmlspecialchars($S['site_name'] ?? 'Lab Business Analytics') ?>. All rights reserved.
+      <?php endif; ?>
+    </div>
   </div>
 </footer>
 <!-- Bootstrap JS -->

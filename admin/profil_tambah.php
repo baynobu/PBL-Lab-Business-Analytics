@@ -18,8 +18,15 @@ include "../views/layouts/header.php";
 
 <form method="POST">
     <div class="mb-3">
-        <label>Kategori (visi/misi/tujuan/latar belakang)</label>
-        <input type="text" name="kategori" class="form-control" required>
+        <label>Kategori</label>
+        <select name="kategori" class="form-control" required>
+            <option value="">-- Pilih Kategori --</option>
+            <option value="profile">Profile</option>
+            <option value="visi">Visi</option>
+            <option value="misi">Misi</option>
+            <option value="tujuan">Tujuan</option>
+            <option value="latar belakang">Latar Belakang</option>
+        </select>
     </div>
     <div class="mb-3">
         <label>Judul</label>
@@ -33,3 +40,4 @@ include "../views/layouts/header.php";
 </form>
 
 <?php include "../views/layouts/footer.php"; ?>
+<a href="profil_manage.php" class="btn btn-secondary mt-2">Kembali</a>

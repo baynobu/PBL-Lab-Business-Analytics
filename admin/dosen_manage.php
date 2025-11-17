@@ -19,7 +19,6 @@ include "../views/layouts/header.php";
                         <thead class="table-light">
                             <tr>
                                 <th>Nama</th>
-                                <th>NIP</th>
                                 <th>Keahlian</th>
                                 <th>Aksi</th>
                             </tr>
@@ -28,7 +27,6 @@ include "../views/layouts/header.php";
                             <?php foreach ($data as $d): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($d['nama'] ?? '') ?></td>
-                                    <td><?= isset($d['nip']) ? htmlspecialchars($d['nip']) : '<span class="text-muted">-</span>' ?></td>
                                     <td><?= isset($d['keahlian']) ? htmlspecialchars($d['keahlian']) : '<span class="text-muted">-</span>' ?></td>
                                     <td>
                                         <a href="dosen_edit.php?id=<?= $d['id']; ?>" class="btn btn-warning btn-sm rounded-pill px-3"><i class="bi bi-pencil-square"></i> Edit</a>

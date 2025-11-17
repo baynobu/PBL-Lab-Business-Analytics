@@ -1,9 +1,9 @@
 <?php
 $host = "localhost";
 $port = "5432";
-$dbname = "lab_ba"; // sesuai yang sudah kamu buat
-$user = "postgres"; // jika berbeda ubah
-$password = "biasanyabisa";     // jika ada password masukkan disini
+$dbname = "lab-ba"; 
+$user = "postgres"; 
+$password = "isi_password";    
 
 try {
     $pdo = new PDO("pgsql:host=$host;port=$port;dbname=$dbname", $user, $password);
