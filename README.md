@@ -2,9 +2,9 @@
 
 ## Installation
 
-To install the project, follow these steps:
+Untuk Instalasi Ikuti Step Berikut:
 
-1. Clone the repository:
+1. Clone Repository:
 
 ```
 git clone -b prod https://github.com/baynobu/PBL-Lab-Business-Analytics.git
@@ -16,17 +16,17 @@ git clone -b prod https://github.com/baynobu/PBL-Lab-Business-Analytics.git
 CREATE DATABASE lab-ba;
 ```
 
-3. Backup the .sql file
+3. Backup Database .sql file
    [Click here](https://github.com/baynobu/PBL-Lab-Business-Analytics/blob/docs/DB%20%2B%20etc/db-seed-lab-ba.sql)
 
-4. And run Laragon server
+4. Run laragon server
 
-5. Configure your Database at /app/config/database.php
+5. Configure database di folder /app/config/database.php
 
-6. Try it on
+6. Lalu run
 
 ```
-localhost/your_folder
+localhost/your_folder/index.php
 ```
 
 ## Daftar Halaman Aplikasi
