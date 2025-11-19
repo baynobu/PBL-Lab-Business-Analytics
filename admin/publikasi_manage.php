@@ -59,11 +59,13 @@ include "../views/layouts/header.php";
     .text-primary-custom {
         color: #0A2A43 !important;
     }
+
     .btn-accent {
         background-color: #3FA2F7;
         color: #fff;
         border: none;
     }
+
     .btn-accent:hover,
     .btn-accent:focus {
         background: #2196f3;

@@ -98,37 +98,37 @@ include "../views/layouts/header.php";
 <section id="publikasi" class="bg-white py-5">
     <div class="container">
         <h2 class="section-title">Publikasi</h2>
-        <?php 
+        <?php
         require_once "../app/models/Publikasi.php";
         $publikasiList = Publikasi::all();
         if (count($publikasiList) === 0): ?>
             <div class="alert alert-info">Belum ada publikasi.</div>
         <?php else: ?>
-        <div class="row g-4">
-            <?php foreach (array_slice($publikasiList, 0, 4) as $pub): ?>
-                <div class="col-md-6 col-lg-3">
-                    <div class="card h-100 shadow-sm border-0">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title text-primary-custom mb-2"><?= htmlspecialchars($pub['judul']) ?></h5>
-                            <div class="mb-1 text-muted small">Oleh: <?= htmlspecialchars($pub['penulis']) ?></div>
-                            <div class="mb-2 text-muted small">Tanggal: <?= htmlspecialchars($pub['tanggal']) ?></div>
-                            <div class="mb-2" style="min-height:48px;">
-                                <?= nl2br(htmlspecialchars(mb_strimwidth($pub['deskripsi'], 0, 80, '...'))) ?>
+            <div class="row g-4">
+                <?php foreach (array_slice($publikasiList, 0, 4) as $pub): ?>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="card h-100 shadow-sm border-0">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title text-primary-custom mb-2"><?= htmlspecialchars($pub['judul']) ?></h5>
+                                <div class="mb-1 text-muted small">Oleh: <?= htmlspecialchars($pub['penulis']) ?></div>
+                                <div class="mb-2 text-muted small">Tanggal: <?= htmlspecialchars($pub['tanggal']) ?></div>
+                                <div class="mb-2" style="min-height:48px;">
+                                    <?= nl2br(htmlspecialchars(mb_strimwidth($pub['deskripsi'], 0, 80, '...'))) ?>
+                                </div>
+                                <?php if ($pub['file']): ?>
+                                    <a href="/lab-ba/public/uploads/publikasi/<?= htmlspecialchars($pub['file']) ?>" target="_blank" class="btn btn-outline-accent btn-sm mb-1">Download File</a>
+                                <?php endif; ?>
+                                <?php if ($pub['link']): ?>
+                                    <a href="<?= htmlspecialchars($pub['link']) ?>" target="_blank" class="btn btn-outline-accent btn-sm mb-1">Lihat Link</a>
+                                <?php endif; ?>
                             </div>
-                            <?php if ($pub['file']): ?>
-                                <a href="/lab-ba/public/uploads/publikasi/<?= htmlspecialchars($pub['file']) ?>" target="_blank" class="btn btn-outline-accent btn-sm mb-1">Download File</a>
-                            <?php endif; ?>
-                            <?php if ($pub['link']): ?>
-                                <a href="<?= htmlspecialchars($pub['link']) ?>" target="_blank" class="btn btn-outline-accent btn-sm mb-1">Lihat Link</a>
-                            <?php endif; ?>
                         </div>
                     </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-        <div class="text-end mt-3">
-            <a href="publikasi.php" class="btn btn-outline-accent btn-sm">Lihat Semua Publikasi</a>
-        </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="text-end mt-3">
+                <a href="publikasi.php" class="btn btn-outline-accent btn-sm">Lihat Semua Publikasi</a>
+            </div>
         <?php endif; ?>
     </div>
 </section>
