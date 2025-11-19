@@ -90,18 +90,14 @@ $adminName = $isAdmin ? $_SESSION['admin_username'] : null;
 $adminMenus = [
   ['label' => 'Dashboard', 'file' => 'dashboard.php', 'icon' => 'bi-speedometer2'],
   ['label' => 'Manajemen Admin', 'file' => 'admin_manage.php', 'icon' => 'bi-person-badge'],
-  //['label' => 'Tambah Admin', 'file' => 'admin_tambah.php', 'icon' => 'bi-person-plus'],
   ['label' => 'Manajemen Dosen', 'file' => 'dosen_manage.php', 'icon' => 'bi-people'],
-  //['label' => 'Tambah Dosen', 'file' => 'dosen_tambah.php', 'icon' => 'bi-person-plus'],
   ['label' => 'Manajemen Galeri', 'file' => 'galeri_manage.php', 'icon' => 'bi-images'],
-  //['label' => 'Tambah Galeri', 'file' => 'galeri_tambah.php', 'icon' => 'bi-plus-square'],
+  ['label' => 'Manajemen Publikasi', 'file' => 'publikasi_manage.php', 'icon' => 'bi-journal-text'],
+  ['label' => 'Manajemen Kategori', 'file' => 'kategori_manage.php', 'icon' => 'bi-tags'],
   ['label' => 'Manajemen Peminjaman', 'file' => 'peminjaman_manage.php', 'icon' => 'bi-calendar-check'],
-  //['label' => 'Set Peminjaman', 'file' => 'peminjaman_set.php', 'icon' => 'bi-calendar2-plus'],
   ['label' => 'Manajemen Profil', 'file' => 'profil_manage.php', 'icon' => 'bi-person-lines-fill'],
-  //['label' => 'Tambah Profil', 'file' => 'profil_tambah.php', 'icon' => 'bi-person-plus-fill'],
   ['label' => 'Pengaturan Website', 'file' => 'pengaturan_website.php', 'icon' => 'bi-gear'],
   ['label' => 'Pengaturan Kontak', 'file' => 'kontak_lab.php', 'icon' => 'bi-telephone'],
-  //['label' => 'Logout', 'file' => 'logout.php', 'icon' => 'bi-box-arrow-right'],
 ];
 ?>
 
