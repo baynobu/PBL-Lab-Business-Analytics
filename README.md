@@ -17,7 +17,7 @@ CREATE DATABASE lab-ba;
 ```
 
 3. Backup Database .sql file
-   [Click here](https://github.com/baynobu/PBL-Lab-Business-Analytics/blob/docs/DB%20%2B%20etc/db-seed-lab-ba.sql)
+   [Click here](https://github.com/baynobu/PBL-Lab-Business-Analytics/blob/docs/DB%20%2B%20etc/db-seed-lab-ba-v2.sql)
 
 4. Run laragon server
 
@@ -29,18 +29,20 @@ CREATE DATABASE lab-ba;
 localhost/your_folder/index.php
 ```
 
-## Daftar Halaman Aplikasi
+## Daftar Halaman Aplikasi (Update)
 
 Berikut adalah daftar halaman utama beserta deskripsi dan link aksesnya:
 
-| URL                                    | Deskripsi                                     |
-| -------------------------------------- | --------------------------------------------- |
-| `localhost/your_folder/index.php`      | Halaman utama aplikasi (Landing page)         |
-| `localhost/your_folder/login.php`      | Halaman login admin                           |
-| `localhost/your_folder/galeri.php`     | Galeri foto kegiatan laboratorium             |
-| `localhost/your_folder/profil.php`     | Profil laboratorium (visi, misi, tujuan, dsb) |
-| `localhost/your_folder/peminjaman.php` | Formulir pengajuan peminjaman lab             |
-| `localhost/your_folder/jadwal.php`     | Jadwal pemakaian/peminjaman laboratorium      |
+| URL                                    | Deskripsi                                                |
+| -------------------------------------- | -------------------------------------------------------- |
+| `localhost/your_folder/index.php`      | Halaman utama aplikasi (Landing page)                    |
+| `localhost/your_folder/login.php`      | Halaman login admin                                      |
+| `localhost/your_folder/galeri.php`     | Galeri foto kegiatan laboratorium                        |
+| `localhost/your_folder/dosen.php`      | Daftar dosen pengampu lab (dengan modal detail)          |
+| `localhost/your_folder/profil.php`     | Profil laboratorium (visi, misi, tujuan, dsb)            |
+| `localhost/your_folder/peminjaman.php` | Formulir pengajuan peminjaman lab                        |
+| `localhost/your_folder/jadwal.php`     | Jadwal pemakaian/peminjaman laboratorium                 |
+| `localhost/your_folder/publikasi.php`  | Daftar publikasi ilmiah/berita lab (dengan modal detail) |
 
 #### Halaman Admin (akses: login sebagai admin)
 
@@ -54,8 +56,11 @@ Berikut adalah daftar halaman utama beserta deskripsi dan link aksesnya:
 | `localhost/your_folder/admin/peminjaman_manage.php`  | Manajemen peminjaman lab                   |
 | `localhost/your_folder/admin/pengaturan_website.php` | Pengaturan website (nama, logo, copyright) |
 | `localhost/your_folder/admin/kontak_lab.php`         | Pengaturan kontak lab                      |
+| `localhost/your_folder/admin/kategori_manage.php`    | Manajemen kategori dosen & publikasi       |
+| `localhost/your_folder/admin/publikasi_manage.php`   | Manajemen publikasi lab                    |
 
 > Ganti `your_folder` dengan nama folder aplikasi Anda di localhost.
+
 
 ## Folder Structure
 
@@ -84,6 +89,8 @@ lab-ba/
 │   ├── profil_manage.php
 │   ├── profil_tambah.php
 │   ├── kontak_lab.php
+│   ├── kategori_manage.php
+│   ├── publikasi_manage.php
 ├── app/
 │   ├── config/
 │   │   └── database.php
