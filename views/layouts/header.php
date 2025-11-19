@@ -21,7 +21,11 @@ if (!$S) {
   <!-- Google Fonts: Poppins, Inter, Rubik -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@400;700&family=Rubik:wght@400;700&display=swap" rel="stylesheet">
   <!-- Custom Style -->
-  <link rel="stylesheet" href="/public/assets/css/style.css">
+  <link rel="stylesheet" href="/lab-ba/public/assets/css/style.css">
+  <!-- Bootstrap JS (agar dropdown berfungsi di admin) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Dropdown fix jika JS tidak otomatis jalan -->
+  <script src="/lab-ba/public/assets/js/dropdown-fix.js"></script>
   <style>
     body {
       font-family: 'Poppins', 'Inter', 'Rubik', Arial, sans-serif;
@@ -102,45 +106,66 @@ $adminMenus = [
 ?>
 
 <body class="d-flex flex-column min-vh-100">
+
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg bg-primary-custom navbar-dark py-3 fixed-top shadow-sm">
-    <div class="container-fluid">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="/lab-ba/public/index.php">
-        <?php if (!empty($S['logo'])): ?>
-          <img src="/lab-ba/public/uploads/logo/<?= htmlspecialchars($S['logo']) ?>" alt="Logo" style="height:36px;max-width:48px;object-fit:contain;">
-        <?php endif; ?>
-        <?= htmlspecialchars($S['site_name'] ?? 'Lab Business Analytics') ?>
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="#profile">Profile</a></li>
-          <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
-          <li class="nav-item"><a class="nav-link" href="#dosen">Dosen</a></li>
-          <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
-          <?php if (!$isAdmin): ?>
-            <li class="nav-item"><a class="nav-link" href="/lab-ba/public/login.php">Login</a></li>
-          <?php else: ?>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-person-circle"></i> Hi, <?= htmlspecialchars($adminName) ?>
-              </a>
-              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
-                <li><a class="dropdown-item" href="/lab-ba/admin/dashboard.php">Dashboard Admin</a></li>
-                <li>
-                  <hr class="dropdown-divider">
-                </li>
-                <li><a class="dropdown-item" href="/lab-ba/admin/logout.php">Logout</a></li>
-              </ul>
-            </li>
+  <?php if ($isAdmin && strpos($_SERVER['PHP_SELF'], '/admin/') !== false): ?>
+    <nav class="navbar navbar-expand-lg bg-primary-custom navbar-dark py-3 fixed-top shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/lab-ba/public/index.php">
+          <?php if (!empty($S['logo'])): ?>
+            <img src="/lab-ba/public/uploads/logo/<?= htmlspecialchars($S['logo']) ?>" alt="Logo" style="height:36px;max-width:48px;object-fit:contain;">
           <?php endif; ?>
+          <?= htmlspecialchars($S['site_name'] ?? 'Lab Business Analytics') ?>
+        </a>
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="btn btn-danger fw-semibold rounded-pill px-4" href="/lab-ba/admin/logout.php">
+              <i class="bi bi-box-arrow-right"></i> Logout
+            </a>
+          </li>
         </ul>
       </div>
-    </div>
-  </nav>
+    </nav>
+  <?php else: ?>
+    <nav class="navbar navbar-expand-lg bg-primary-custom navbar-dark py-3 fixed-top shadow-sm">
+      <div class="container-fluid">
+        <a class="navbar-brand d-flex align-items-center gap-2" href="/lab-ba/public/index.php">
+          <?php if (!empty($S['logo'])): ?>
+            <img src="/lab-ba/public/uploads/logo/<?= htmlspecialchars($S['logo']) ?>" alt="Logo" style="height:36px;max-width:48px;object-fit:contain;">
+          <?php endif; ?>
+          <?= htmlspecialchars($S['site_name'] ?? 'Lab Business Analytics') ?>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="#hero">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#profile">Profile</a></li>
+            <li class="nav-item"><a class="nav-link" href="#galeri">Galeri</a></li>
+            <li class="nav-item"><a class="nav-link" href="#dosen">Dosen</a></li>
+            <li class="nav-item"><a class="nav-link" href="#kontak">Kontak</a></li>
+            <?php if (!$isAdmin): ?>
+              <li class="nav-item"><a class="nav-link" href="/lab-ba/public/login.php">Login</a></li>
+            <?php else: ?>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="adminDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="bi bi-person-circle"></i> Hi, <?= htmlspecialchars($adminName) ?>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="adminDropdown">
+                  <li><a class="dropdown-item" href="/lab-ba/admin/dashboard.php">Dashboard Admin</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="/lab-ba/admin/logout.php">Logout</a></li>
+                </ul>
+              </li>
+            <?php endif; ?>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  <?php endif; ?>
   <!-- End Navbar -->
 
   <style>

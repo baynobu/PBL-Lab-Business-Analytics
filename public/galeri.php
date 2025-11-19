@@ -29,15 +29,19 @@
         <?php foreach ($galeriList as $g): ?>
             <div class="modal fade" id="galeriModal<?= $g['id'] ?>" tabindex="-1" aria-labelledby="galeriModalLabel<?= $g['id'] ?>" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="galeriModalLabel<?= $g['id'] ?>"><?= htmlspecialchars($g['judul']) ?></h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div class="modal-content rounded-4 overflow-hidden shadow-lg border-0" style="background:rgba(255,255,255,0.98);">
+                        <div class="position-relative">
+                            <img src="/lab-ba/public/uploads/galeri/<?= htmlspecialchars($g['gambar']) ?>" class="w-100" style="max-height:340px;object-fit:cover;object-position:center;">
+                            <button type="button" class="btn-close position-absolute top-0 end-0 m-3 bg-white rounded-circle p-2" data-bs-dismiss="modal" aria-label="Close" style="z-index:2;"></button>
                         </div>
-                        <div class="modal-body">
-                            <img src="/lab-ba/public/uploads/galeri/<?= htmlspecialchars($g['gambar']) ?>" class="img-fluid rounded mb-3" style="max-height:350px;object-fit:cover;">
-                            <div><?= nl2br(htmlspecialchars($g['deskripsi'] ?? '')) ?></div>
-                            <div class="mt-2 text-muted small">Tanggal: <?= htmlspecialchars($g['tanggal'] ?? '-') ?></div>
+                        <div class="p-4 p-md-5 text-center">
+                            <h3 class="fw-bold mb-2 text-primary-custom" id="galeriModalLabel<?= $g['id'] ?>">
+                                <i class="bi bi-image me-2 text-accent"></i><?= htmlspecialchars($g['judul']) ?>
+                            </h3>
+                            <div class="mb-3 text-muted small"><i class="bi bi-calendar-event me-1"></i> <?= htmlspecialchars($g['tanggal'] ?? '-') ?></div>
+                            <div class="mb-3 fs-5 px-2 py-3 rounded-3" style="background:rgba(63,162,247,0.07);display:inline-block;min-width:180px;">
+                                <i class="bi bi-chat-left-text me-2 text-accent"></i><?= nl2br(htmlspecialchars($g['deskripsi'] ?? '')) ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -55,6 +59,49 @@
         box-shadow: 0 8px 32px 0 rgba(10, 42, 67, 0.13), 0 1.5px 8px 0 rgba(63, 162, 247, 0.10);
         transform: translateY(-2px) scale(1.01);
         transition: box-shadow .2s, transform .2s;
+    }
+
+    .modal-content.rounded-4 {
+        border-radius: 1.5rem !important;
+        box-shadow: 0 8px 40px 0 rgba(10, 42, 67, 0.18), 0 1.5px 8px 0 rgba(63, 162, 247, 0.10);
+        animation: galeriPop .4s cubic-bezier(.4, 2, .6, 1) both;
+    }
+
+    .text-accent {
+        color: #3FA2F7 !important;
+    }
+
+    .modal-content img.w-100 {
+        border-bottom-left-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+    }
+
+    @media (max-width: 767.98px) {
+        .modal-content.rounded-4 {
+            border-radius: 1rem !important;
+        }
+
+        .modal-content img.w-100 {
+            border-bottom-left-radius: 1rem;
+            border-bottom-right-radius: 1rem;
+            max-height: 180px;
+        }
+
+        .p-md-5 {
+            padding: 1.5rem !important;
+        }
+    }
+
+    @keyframes galeriPop {
+        0% {
+            transform: scale(.85) translateY(40px);
+            opacity: 0;
+        }
+
+        100% {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
     }
 </style>
 

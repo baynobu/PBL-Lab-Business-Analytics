@@ -3,6 +3,7 @@ require_once "../app/utils/session.php";
 checkAdminLogin();
 ?>
 
+
 <?php include "../views/layouts/header.php"; ?>
 
 <div class="container py-5">
@@ -12,13 +13,13 @@ checkAdminLogin();
                 <div class="card-body p-5 text-center">
                     <img src="../public/assets/img/maskot.png" alt="Lab BA" width="76" class="mb-3 hero-maskot-img shadow-sm" style="background:transparent;">
                     <h2 class="fw-bold text-primary-custom mb-2">Selamat Datang, <?= htmlspecialchars($_SESSION['admin_username']); ?> 👋</h2>
-                    <p class="lead mb-4">Ini adalah panel admin <span class="fw-semibold text-accent">Laboratorium Business Analytics</span>.<br>Kelola data, pantau aktivitas, dan lakukan administrasi dengan mudah.</p>
+                    <p class="lead mb-4">Panel Admin <span class="fw-semibold text-accent">Laboratorium Business Analytics</span>.<br>Kelola data, pantau aktivitas, dan lakukan administrasi dengan mudah.</p>
                     <a href="logout.php" class="btn btn-outline-danger btn-lg rounded-pill px-4 fw-bold">Logout</a>
                 </div>
             </div>
-            <div class="alert alert-info text-center rounded-4 shadow-sm">
+            <!-- <div class="alert alert-info text-center rounded-4 shadow-sm">
                 <strong>Tips:</strong> Gunakan menu di atas untuk mengelola data dosen, galeri, peminjaman, dan pengaturan website.
-            </div>
+            </div> -->
             <style>
                 .hero-maskot-img {
                     border-radius: 18px;
@@ -28,5 +29,3 @@ checkAdminLogin();
         </div>
     </div>
 </div>
-
-<?php include "../views/layouts/footer.php"; ?>

@@ -7,6 +7,7 @@ require_once "../app/utils/log.php";
 $id = $_GET['id'];
 $a = Admin::find($id);
 
+$message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Admin::update($id, $_POST['username'], $_POST['nama']);
     if (!empty($_POST['password'])) {
@@ -14,33 +15,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         logActivity("Mengubah password admin: {$a['username']}");
     }
     logActivity("Mengubah data admin: {$a['username']}");
-    header("Location: admin_manage.php");
-    exit;
+    $a = Admin::find($id);
+    $message = "<div class='alert alert-success'>Data admin berhasil diupdate.</div>";
+    // header("Location: admin_manage.php");
+    // exit;
 }
 
 include "../views/layouts/header.php";
 ?>
-
-<h3>Edit Admin</h3>
-
-<form method="POST">
-    <div class="mb-3">
-        <label>Nama Lengkap</label>
-        <input type="text" name="nama" value="<?= $a['nama_lengkap']; ?>" class="form-control" required>
+<section class="py-4 min-vh-100 bg-white">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-7 col-md-9">
+                <div class="card shadow-lg border-0 rounded-4 p-4 p-md-5">
+                    <h3 class="fw-bold text-primary-custom mb-3">Edit Admin</h3>
+                    <?= $message ?>
+                    <form method="POST" autocomplete="off">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Nama Lengkap</label>
+                            <input type="text" name="nama" value="<?= htmlspecialchars($a['nama_lengkap']); ?>" class="form-control rounded-pill" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Username</label>
+                            <input type="text" name="username" value="<?= htmlspecialchars($a['username']); ?>" class="form-control rounded-pill" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Ubah Password (opsional)</label>
+                            <input type="password" name="password" class="form-control rounded-pill">
+                        </div>
+                        <div class="d-flex justify-content-end gap-2 mt-4">
+                            <a href="admin_manage.php" class="btn btn-secondary">Kembali</a>
+                            <button type="submit" class="btn btn-success">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
-    <div class="mb-3">
-        <label>Username</label>
-        <input type="text" name="username" value="<?= $a['username']; ?>" class="form-control" required>
-    </div>
-
-    <div class="mb-3">
-        <label>Ubah Password (opsional)</label>
-        <input type="password" name="password" class="form-control">
-    </div>
-
-    <button type="submit" class="btn btn-success">Update</button>
-</form>
-
-<?php include "../views/layouts/footer.php"; ?>
-<a href="admin_manage.php" class="btn btn-secondary mt-2">Kembali</a>
+</section>

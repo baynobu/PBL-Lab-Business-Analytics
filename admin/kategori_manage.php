@@ -41,5 +41,3 @@ include "../views/layouts/header.php";
         </div>
     </div>
 </section>
-
-<?php include "../views/layouts/footer.php"; ?>

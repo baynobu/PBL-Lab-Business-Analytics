@@ -96,5 +96,3 @@ include "../views/layouts/header.php";
         color: #fff;
     }
 </style>
-
-<?php include "../views/layouts/footer.php"; ?>

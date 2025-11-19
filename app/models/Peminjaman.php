@@ -17,18 +17,18 @@ class Peminjaman
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function create($nama, $nim, $tanggal_mulai, $tanggal_selesai, $waktu_mulai, $waktu_selesai, $keperluan)
+    public static function create($nama, $nip, $tanggal_mulai, $tanggal_selesai, $waktu_mulai, $waktu_selesai, $keperluan)
     {
         global $pdo;
         $stmt = $pdo->prepare("
             INSERT INTO peminjaman_lab 
-            (nama_peminjam, nim, tanggal_mulai, tanggal_selesai, waktu_mulai, waktu_selesai, keperluan) 
+            (nama_peminjam, nip, tanggal_mulai, tanggal_selesai, waktu_mulai, waktu_selesai, keperluan) 
             VALUES 
-            (:nama, :nim, :tm, :ts, :wm, :ws, :kep)
+            (:nama, :nip, :tm, :ts, :wm, :ws, :kep)
         ");
         return $stmt->execute([
             'nama' => $nama,
-            'nim' => $nim,
+            'nip' => $nip,
             'tm' => $tanggal_mulai,
             'ts' => $tanggal_selesai,
             'wm' => $waktu_mulai,
