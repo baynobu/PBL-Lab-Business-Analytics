@@ -1,4 +1,4 @@
-<?php require_once "../app/models/Settings.php";
+<?php require_once $_SERVER['DOCUMENT_ROOT'] . '/lab-ba/app/models/Settings.php';
 $S = Settings::get();
 if (!$S) {
   $S = [
@@ -93,15 +93,15 @@ $adminName = $isAdmin ? $_SESSION['admin_username'] : null;
 // Daftar menu sidebar admin (otomatis dari file di folder admin)
 $adminMenus = [
   ['label' => 'Dashboard', 'file' => 'dashboard.php', 'icon' => 'bi-speedometer2'],
-  ['label' => 'Manajemen Admin', 'file' => 'admin_manage.php', 'icon' => 'bi-person-badge'],
-  ['label' => 'Manajemen Dosen', 'file' => 'dosen_manage.php', 'icon' => 'bi-people'],
-  ['label' => 'Manajemen Galeri', 'file' => 'galeri_manage.php', 'icon' => 'bi-images'],
-  ['label' => 'Manajemen Publikasi', 'file' => 'publikasi_manage.php', 'icon' => 'bi-journal-text'],
-  ['label' => 'Manajemen Kategori', 'file' => 'kategori_manage.php', 'icon' => 'bi-tags'],
-  ['label' => 'Manajemen Peminjaman', 'file' => 'peminjaman_manage.php', 'icon' => 'bi-calendar-check'],
-  ['label' => 'Manajemen Profil', 'file' => 'profil_manage.php', 'icon' => 'bi-person-lines-fill'],
-  ['label' => 'Pengaturan Website', 'file' => 'pengaturan_website.php', 'icon' => 'bi-gear'],
-  ['label' => 'Pengaturan Kontak', 'file' => 'kontak_lab.php', 'icon' => 'bi-telephone'],
+  ['label' => 'Manajemen Admin', 'file' => 'users/manage.php', 'icon' => 'bi-person-badge'],
+  ['label' => 'Manajemen Dosen', 'file' => 'dosen/manage.php', 'icon' => 'bi-people'],
+  ['label' => 'Manajemen Galeri', 'file' => 'galeri/manage.php', 'icon' => 'bi-images'],
+  ['label' => 'Manajemen Publikasi', 'file' => 'publikasi/manage.php', 'icon' => 'bi-journal-text'],
+  ['label' => 'Manajemen Kategori', 'file' => 'kategori/manage.php', 'icon' => 'bi-tags'],
+  ['label' => 'Manajemen Peminjaman', 'file' => 'peminjaman/manage.php', 'icon' => 'bi-calendar-check'],
+  ['label' => 'Manajemen Profil', 'file' => 'profil/manage.php', 'icon' => 'bi-person-lines-fill'],
+  ['label' => 'Pengaturan Website', 'file' => 'pengaturan/website.php', 'icon' => 'bi-gear'],
+  ['label' => 'Pengaturan Kontak', 'file' => 'kontak/lab.php', 'icon' => 'bi-telephone'],
 ];
 ?>
 
