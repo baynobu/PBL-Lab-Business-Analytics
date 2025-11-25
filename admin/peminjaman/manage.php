@@ -18,8 +18,10 @@ include "../../views/layouts/header.php";
                         <thead class="table-light">
                             <tr>
                                 <th>Nama Peminjam</th>
+                                <th>NIP</th>
                                 <th>Tanggal</th>
                                 <th>Waktu</th>
+                                <th>Keperluan</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
                             </tr>
@@ -28,8 +30,11 @@ include "../../views/layouts/header.php";
                             <?php foreach ($data as $p): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($p['nama_peminjam']) ?></td>
+                                    <td><?= htmlspecialchars($p['nip']) ?></td>
                                     <td><?= htmlspecialchars($p['tanggal_mulai']) ?><?php if ($p['tanggal_selesai']): ?> <span class="mx-1">→</span> <?= htmlspecialchars($p['tanggal_selesai']) ?><?php endif; ?></td>
                                     <td><?= htmlspecialchars($p['waktu_mulai']) ?> - <?= htmlspecialchars($p['waktu_selesai']) ?></td>
+                                    <td><?= htmlspecialchars($p['keperluan']) ?></td>
+
                                     <td>
                                         <?php
                                         $status = strtolower($p['status']);

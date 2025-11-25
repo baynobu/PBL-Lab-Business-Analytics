@@ -3,6 +3,36 @@ require_once __DIR__ . "/../config/database.php";
 
 class Peminjaman
 {
+    public static function isSlotAvailable($tanggal, $mulai, $selesai)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM peminjaman_lab WHERE tanggal_mulai = :tanggal AND status = 'disetujui' AND ((waktu_mulai < :selesai AND waktu_selesai > :mulai))");
+        $stmt->execute(['tanggal' => $tanggal, 'mulai' => $mulai, 'selesai' => $selesai]);
+        return $stmt->fetchColumn() == 0;
+    }
+
+    public static function isSlotBlockedByAdmin($tanggal, $mulai, $selesai)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM jam_tidak_tersedia WHERE tanggal = :tanggal AND ((waktu_mulai < :selesai AND waktu_selesai > :mulai))");
+        $stmt->execute(['tanggal' => $tanggal, 'mulai' => $mulai, 'selesai' => $selesai]);
+        return $stmt->fetchColumn() > 0;
+    }
+    public static function allByRange($start, $end)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT * FROM peminjaman_lab WHERE tanggal_mulai BETWEEN :start AND :end");
+        $stmt->execute(['start' => $start, 'end' => $end]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function riwayatUser($nama, $nip)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT * FROM peminjaman_lab WHERE nip = :nip OR nama_peminjam = :nama ORDER BY id DESC LIMIT 10");
+        $stmt->execute(['nip' => $nip, 'nama' => $nama]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
     public static function delete($id)
     {
         global $pdo;

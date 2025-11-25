@@ -19,7 +19,6 @@ include "../views/layouts/header.php";
                 <p class="lead mb-4">Laboratorium Business Analytics<br>Politeknik Negeri Malang</p>
                 <div class="d-flex flex-column flex-sm-row gap-3 justify-content-lg-start justify-content-center align-items-center">
                     <a href="/lab-ba/public/peminjaman.php" class="btn btn-lg px-5 py-3 fw-bold shadow btn-accent rounded-pill">Ajukan Peminjaman Lab <i class="bi bi-arrow-right ms-2"></i></a>
-                    <a href="/lab-ba/public/jadwal.php" class="btn btn-lg px-5 py-3 fw-bold shadow btn-outline-light rounded-pill">Lihat Jadwal Peminjaman <i class="bi bi-calendar-event ms-2"></i></a>
                 </div>
             </div>
             <div class="col-lg-5 d-flex align-items-center justify-content-lg-end justify-content-center ps-lg-5" style="min-height:340px;">

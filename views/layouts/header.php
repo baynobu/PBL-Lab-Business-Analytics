@@ -99,6 +99,7 @@ $adminMenus = [
   ['label' => 'Manajemen Publikasi', 'file' => 'publikasi/manage.php', 'icon' => 'bi-journal-text'],
   ['label' => 'Manajemen Kategori', 'file' => 'kategori/manage.php', 'icon' => 'bi-tags'],
   ['label' => 'Manajemen Peminjaman', 'file' => 'peminjaman/manage.php', 'icon' => 'bi-calendar-check'],
+  ['label' => 'Kelola Jam Tidak Tersedia', 'file' => 'kelola_jam/jam-tidak-tersedia.php', 'icon' => 'bi-clock-history'],
   ['label' => 'Manajemen Profil', 'file' => 'profil/manage.php', 'icon' => 'bi-person-lines-fill'],
   ['label' => 'Pengaturan Website', 'file' => 'pengaturan/website.php', 'icon' => 'bi-gear'],
   ['label' => 'Pengaturan Kontak', 'file' => 'kontak/lab.php', 'icon' => 'bi-telephone'],
