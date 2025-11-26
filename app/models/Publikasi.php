@@ -1,42 +1,136 @@
 <?php
-// app/models/Publikasi.php
 require_once __DIR__ . '/../config/database.php';
 
 class Publikasi
 {
-    public static function all()
+    public static function all($limit = 12, $offset = 0, $search = '', $dosen_id = null, $kategori_id = null)
     {
         global $pdo;
-        $stmt = $pdo->query('SELECT publikasi.*, kategori.nama AS kategori_nama FROM publikasi LEFT JOIN kategori ON publikasi.kategori_id = kategori.id ORDER BY tanggal DESC, publikasi.id DESC');
+        $where = [];
+        $params = [];
+        if ($search) {
+            $where[] = "LOWER(judul) LIKE ?";
+            $params[] = '%' . strtolower($search) . '%';
+        }
+        if ($dosen_id) {
+            $where[] = "EXISTS (SELECT 1 FROM publikasi_dosen pd WHERE pd.publikasi_id = publikasi.id AND pd.dosen_id = ? )";
+            $params[] = $dosen_id;
+        }
+        if ($kategori_id) {
+            $where[] = "EXISTS (SELECT 1 FROM publikasi_kategori pk WHERE pk.publikasi_id = publikasi.id AND pk.kategori_id = ? )";
+            $params[] = $kategori_id;
+        }
+        $sql = "SELECT * FROM publikasi";
+        if ($where) $sql .= " WHERE " . implode(' AND ', $where);
+        $sql .= " ORDER BY tanggal DESC, id DESC LIMIT ? OFFSET ?";
+        $params[] = $limit;
+        $params[] = $offset;
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function count($search = '', $dosen_id = null, $kategori_id = null)
+    {
+        global $pdo;
+        $where = [];
+        $params = [];
+        if ($search) {
+            $where[] = "LOWER(judul) LIKE ?";
+            $params[] = '%' . strtolower($search) . '%';
+        }
+        if ($dosen_id) {
+            $where[] = "EXISTS (SELECT 1 FROM publikasi_dosen pd WHERE pd.publikasi_id = publikasi.id AND pd.dosen_id = ? )";
+            $params[] = $dosen_id;
+        }
+        if ($kategori_id) {
+            $where[] = "EXISTS (SELECT 1 FROM publikasi_kategori pk WHERE pk.publikasi_id = publikasi.id AND pk.kategori_id = ? )";
+            $params[] = $kategori_id;
+        }
+        $sql = "SELECT COUNT(*) FROM publikasi";
+        if ($where) $sql .= " WHERE " . implode(' AND ', $where);
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        return $stmt->fetchColumn();
     }
 
     public static function find($id)
     {
         global $pdo;
-        $stmt = $pdo->prepare('SELECT publikasi.*, kategori.nama AS kategori_nama FROM publikasi LEFT JOIN kategori ON publikasi.kategori_id = kategori.id WHERE publikasi.id = ?');
+        $stmt = $pdo->prepare("SELECT * FROM publikasi WHERE id = ?");
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function create($judul, $penulis, $tanggal, $deskripsi, $file, $link, $kategori_id)
+    public static function getDosen($publikasi_id)
     {
         global $pdo;
-        $stmt = $pdo->prepare('INSERT INTO publikasi (judul, penulis, tanggal, deskripsi, file, link, kategori_id) VALUES (?, ?, ?, ?, ?, ?, ?)');
-        $stmt->execute([$judul, $penulis, $tanggal, $deskripsi, $file, $link, $kategori_id]);
+        $stmt = $pdo->prepare("SELECT d.* FROM dosen d JOIN publikasi_dosen pd ON d.id = pd.dosen_id WHERE pd.publikasi_id = ?");
+        $stmt->execute([$publikasi_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function update($id, $judul, $penulis, $tanggal, $deskripsi, $file, $link, $kategori_id)
+    public static function getKategori($publikasi_id)
     {
         global $pdo;
-        $stmt = $pdo->prepare('UPDATE publikasi SET judul=?, penulis=?, tanggal=?, deskripsi=?, file=?, link=?, kategori_id=? WHERE id=?');
-        $stmt->execute([$judul, $penulis, $tanggal, $deskripsi, $file, $link, $kategori_id, $id]);
+        $stmt = $pdo->prepare("SELECT k.* FROM kategori k JOIN publikasi_kategori pk ON k.id = pk.kategori_id WHERE pk.publikasi_id = ?");
+        $stmt->execute([$publikasi_id]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public static function create($data, $dosen_ids, $kategori_ids)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("INSERT INTO publikasi (judul, tanggal, file, link, deskripsi) VALUES (?, ?, ?, ?, ?)");
+        $stmt->execute([
+            $data['judul'],
+            $data['tanggal'],
+            $data['file'],
+            $data['link'],
+            $data['deskripsi']
+        ]);
+        $publikasi_id = $pdo->lastInsertId();
+        // Insert pivot dosen
+        foreach ($dosen_ids as $dosen_id) {
+            $pdo->prepare("INSERT INTO publikasi_dosen (publikasi_id, dosen_id) VALUES (?, ?)")->execute([$publikasi_id, $dosen_id]);
+        }
+        // Insert pivot kategori
+        foreach ($kategori_ids as $kategori_id) {
+            $pdo->prepare("INSERT INTO publikasi_kategori (publikasi_id, kategori_id) VALUES (?, ?)")->execute([$publikasi_id, $kategori_id]);
+        }
+        return $publikasi_id;
+    }
+
+    public static function update($id, $data, $dosen_ids, $kategori_ids)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("UPDATE publikasi SET judul=?, tanggal=?, file=?, link=?, deskripsi=? WHERE id=?");
+        $stmt->execute([
+            $data['judul'],
+            $data['tanggal'],
+            $data['file'],
+            $data['link'],
+            $data['deskripsi'],
+            $id
+        ]);
+        // Update pivot dosen
+        $pdo->prepare("DELETE FROM publikasi_dosen WHERE publikasi_id = ?")->execute([$id]);
+        foreach ($dosen_ids as $dosen_id) {
+            $pdo->prepare("INSERT INTO publikasi_dosen (publikasi_id, dosen_id) VALUES (?, ?)")->execute([$id, $dosen_id]);
+        }
+        // Update pivot kategori
+        $pdo->prepare("DELETE FROM publikasi_kategori WHERE publikasi_id = ?")->execute([$id]);
+        foreach ($kategori_ids as $kategori_id) {
+            $pdo->prepare("INSERT INTO publikasi_kategori (publikasi_id, kategori_id) VALUES (?, ?)")->execute([$id, $kategori_id]);
+        }
     }
 
     public static function delete($id)
     {
         global $pdo;
-        $stmt = $pdo->prepare('DELETE FROM publikasi WHERE id=?');
+        $pdo->prepare("DELETE FROM publikasi_dosen WHERE publikasi_id = ?")->execute([$id]);
+        $pdo->prepare("DELETE FROM publikasi_kategori WHERE publikasi_id = ?")->execute([$id]);
+        $stmt = $pdo->prepare("DELETE FROM publikasi WHERE id = ?");
         $stmt->execute([$id]);
     }
 }

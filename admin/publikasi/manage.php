@@ -2,12 +2,13 @@
 require_once "../../app/utils/session.php";
 checkAdminLogin();
 require_once "../../app/models/Publikasi.php";
+require_once "../../app/models/Dosen.php";
+require_once "../../app/models/Kategori.php";
 require_once "../../app/utils/log.php";
 
-$publikasi = Publikasi::all();
+$publikasi = Publikasi::all(100, 0);
 include "../../views/layouts/header.php";
 ?>
-
 <section class="py-4 min-vh-100 bg-white">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-2">
@@ -21,7 +22,8 @@ include "../../views/layouts/header.php";
                         <thead class="table-light">
                             <tr>
                                 <th>Judul</th>
-                                <th>Penulis</th>
+                                <th>Dosen</th>
+                                <th>Kategori</th>
                                 <th>Tanggal</th>
                                 <th>File/Link</th>
                                 <th>Aksi</th>
@@ -31,7 +33,22 @@ include "../../views/layouts/header.php";
                             <?php foreach ($publikasi as $p): ?>
                                 <tr>
                                     <td><?= htmlspecialchars($p['judul']) ?></td>
-                                    <td><?= htmlspecialchars($p['penulis']) ?></td>
+                                    <td>
+                                        <?php $dosen = Publikasi::getDosen($p['id']); ?>
+                                        <?php foreach ($dosen as $ds): ?>
+                                            <span class="badge bg-info text-dark me-1 mb-1"> <?= htmlspecialchars($ds['nama']) ?> </span>
+                                        <?php endforeach; ?>
+                                    </td>
+                                    <td>
+                                        <?php $kategori = Publikasi::getKategori($p['id']); ?>
+                                        <?php if ($kategori): ?>
+                                            <?php foreach ($kategori as $kat): ?>
+                                                <span class="badge bg-secondary me-1 mb-1"> <?= htmlspecialchars($kat['nama']) ?> </span>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <span class="badge bg-light text-muted">Tidak Berkategori</span>
+                                        <?php endif; ?>
+                                    </td>
                                     <td><?= htmlspecialchars($p['tanggal']) ?></td>
                                     <td>
                                         <?php if ($p['file']): ?>

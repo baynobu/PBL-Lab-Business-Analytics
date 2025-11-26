@@ -109,7 +109,17 @@ include "../views/layouts/header.php";
                         <div class="card h-100 shadow-sm border-0">
                             <div class="card-body d-flex flex-column">
                                 <h5 class="card-title text-primary-custom mb-2"><?= htmlspecialchars($pub['judul']) ?></h5>
-                                <div class="mb-1 text-muted small">Oleh: <?= htmlspecialchars($pub['penulis']) ?></div>
+                                <div class="mb-1 text-muted small">
+                                    Oleh:
+                                    <?php $dosen = Publikasi::getDosen($pub['id']); ?>
+                                    <?php if ($dosen): ?>
+                                        <?php foreach ($dosen as $ds): ?>
+                                            <span class="badge bg-info text-dark me-1 mb-1"> <?= htmlspecialchars($ds['nama']) ?> </span>
+                                        <?php endforeach; ?>
+                                    <?php else: ?>
+                                        <span class="text-muted">Tidak ada peneliti</span>
+                                    <?php endif; ?>
+                                </div>
                                 <div class="mb-2 text-muted small">Tanggal: <?= htmlspecialchars($pub['tanggal']) ?></div>
                                 <div class="mb-2" style="min-height:48px;">
                                     <?= nl2br(htmlspecialchars(mb_strimwidth($pub['deskripsi'], 0, 80, '...'))) ?>
