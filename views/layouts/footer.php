@@ -29,6 +29,9 @@ if (!$S) {
           <li><a href="#hero" class="text-white text-decoration-none"><i class="bi bi-house-door me-1"></i> Home</a></li>
           <li><a href="../public/galeri.php" class="text-white text-decoration-none"><i class="bi bi-images me-1"></i> Galeri</a></li>
           <li><a href="../public/dosen.php" class="text-white text-decoration-none"><i class="bi bi-person-badge me-1"></i> Dosen</a></li>
+          <li><a href="../public/publikasi.php" class="text-white text-decoration-none"><i class="bi bi-journal-text me-1"></i> Publikasi</a></li>
+          <li><a href="../public/berita.php" class="text-white text-decoration-none"><i class="bi bi-newspaper me-1"></i> Berita</a></li>
+          <li><a href="../public/peminjaman.php" class="text-white text-decoration-none"><i class="bi bi-calendar-check me-1"></i> Peminjaman</a></li>
           <li><a href="#kontak" class="text-white text-decoration-none"><i class="bi bi-envelope me-1"></i> Kontak</a></li>
         </ul>
       </div>

@@ -141,6 +141,41 @@ include "../views/layouts/header.php";
         <?php endif; ?>
     </div>
 </section>
+<!-- SECTION BERITA -->
+<section id="berita" class="bg-white py-5">
+    <div class="container">
+        <h2 class="section-title">Berita Terbaru</h2>
+        <?php
+        require_once "../app/models/Berita.php";
+        $beritaList = Berita::all(3, 0);
+        if (count($beritaList) === 0): ?>
+            <div class="alert alert-info">Belum ada berita.</div>
+        <?php else: ?>
+            <div class="row g-4">
+                <?php foreach ($beritaList as $b): ?>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card h-100 shadow-sm border-0">
+                            <?php if (!empty($b['gambar'])): ?>
+                                <img src="/lab-ba/public/uploads/berita/<?= htmlspecialchars($b['gambar']) ?>" class="card-img-top" alt="<?= htmlspecialchars($b['judul']) ?>" style="object-fit:cover;max-height:180px;">
+                            <?php endif; ?>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title text-primary-custom mb-2"><?= htmlspecialchars($b['judul']) ?></h5>
+                                <div class="mb-2 text-muted small"><i class="bi bi-calendar-event me-1"></i> <?= htmlspecialchars($b['tanggal']) ?></div>
+                                <div class="mb-2" style="min-height:48px;">
+                                    <?= nl2br(htmlspecialchars(mb_strimwidth($b['isi'], 0, 80, '...'))) ?>
+                                </div>
+                                <a href="berita_detail.php?id=<?= $b['id'] ?>" class="btn btn-outline-accent btn-sm mt-auto">Baca Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <div class="text-end mt-3">
+                <a href="berita.php" class="btn btn-outline-accent btn-sm">Lihat Semua Berita</a>
+            </div>
+        <?php endif; ?>
+    </div>
+</section>
 <section id="galeri" class="bg-accent bg-opacity-10 py-5">
     <div class="container">
         <h2 class="section-title">Galeri Kegiatan</h2>
