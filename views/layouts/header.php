@@ -187,9 +187,30 @@ $adminMenus = [
   </style>
 
   <?php if ($isAdmin && strpos($_SERVER['PHP_SELF'], '/admin/') !== false): ?>
+    <!-- Floating Sidebar Offcanvas -->
+    <button class="btn btn-accent d-md-none position-fixed" style="top:80px;left:16px;z-index:1040;" type="button" data-bs-toggle="offcanvas" data-bs-target="#adminSidebar" aria-controls="adminSidebar">
+      <i class="bi bi-list"></i> Menu
+    </button>
+    <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="adminSidebar" aria-labelledby="adminSidebarLabel" style="width:220px;">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="adminSidebarLabel"><i class="bi bi-grid"></i> Menu Admin</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body px-2">
+        <ul class="nav flex-column">
+          <?php foreach ($adminMenus as $menu): ?>
+            <li class="nav-item mb-1">
+              <a class="nav-link d-flex align-items-center gap-2 <?php if (basename($_SERVER['PHP_SELF']) === $menu['file']) echo 'active text-accent fw-bold'; ?>" href="/lab-ba/admin/<?= $menu['file'] ?>">
+                <i class="bi <?= $menu['icon'] ?>"></i> <?= $menu['label'] ?>
+              </a>
+            </li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+    </div>
+    <!-- Desktop Sidebar -->
     <div class="container-fluid">
       <div class="row">
-        <!-- Sidebar -->
         <nav class="col-md-2 d-none d-md-block bg-light sidebar py-4" style="min-height: 100vh;">
           <div class="position-sticky">
             <ul class="nav flex-column">

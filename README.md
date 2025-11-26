@@ -19,7 +19,7 @@ CREATE DATABASE lab-ba;
 ```
 
 3. Backup Database .sql file
-   [Click here](https://github.com/baynobu/PBL-Lab-Business-Analytics/blob/docs/DB%20%2B%20etc/db-seed-lab-ba-completed)
+   [Click here](https://github.com/baynobu/PBL-Lab-Business-Analytics/blob/docs/DB%20%2B%20etc/db-seed-lab-ba-completed.sql)
 
 4. Run laragon server
 
