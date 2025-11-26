@@ -9,6 +9,7 @@ Untuk Instalasi Ikuti Step Berikut:
 ```
 git clone -b prod https://github.com/baynobu/PBL-Lab-Business-Analytics.git
 ```
+Lalu ubah nama folder nya menjadi lab-ba
 
 2. Create Database 'lab-ba':
 
@@ -17,7 +18,7 @@ CREATE DATABASE lab-ba;
 ```
 
 3. Backup Database .sql file
-   [Click here](https://github.com/baynobu/PBL-Lab-Business-Analytics/blob/docs/DB%20%2B%20etc/db-seed-lab-ba-v2.sql)
+   [Click here](https://github.com/baynobu/PBL-Lab-Business-Analytics/blob/docs/DB%20%2B%20etc/upd-publikasi-jadwal.sql)
 
 4. Run laragon server
 
