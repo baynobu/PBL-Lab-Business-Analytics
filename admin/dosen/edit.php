@@ -57,7 +57,7 @@ include "../../views/layouts/header.php";
                             <select name="kategori_id" class="form-control rounded-pill" required>
                                 <option value="">-- Pilih Kategori --</option>
                                 <?php foreach (Kategori::all() as $k): ?>
-                                    <option value="<?= $k['id'] ?>" <?= $d['kategori_id'] == $k['id'] ? 'selected' : '' ?>><?= htmlspecialchars($k['nama']) ?></option>
+                                    <option value="<?= $k['id'] ?>" <?= (isset($d['kategori_id']) && $d['kategori_id'] == $k['id']) ? 'selected' : '' ?>><?= htmlspecialchars($k['nama']) ?></option>
                                 <?php endforeach; ?>
                             </select>
                         </div>
