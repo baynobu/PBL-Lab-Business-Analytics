@@ -47,24 +47,23 @@ class Peminjaman
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function create($nama, $nip, $tanggal_mulai, $tanggal_selesai, $waktu_mulai, $waktu_selesai, $keperluan)
+    // Ambil data jadwal dari view
+    public static function getJadwalView($limit = 100, $offset = 0)
     {
         global $pdo;
-        $stmt = $pdo->prepare("
-            INSERT INTO peminjaman_lab 
-            (nama_peminjam, nip, tanggal_mulai, tanggal_selesai, waktu_mulai, waktu_selesai, keperluan) 
-            VALUES 
-            (:nama, :nip, :tm, :ts, :wm, :ws, :kep)
-        ");
-        return $stmt->execute([
-            'nama' => $nama,
-            'nip' => $nip,
-            'tm' => $tanggal_mulai,
-            'ts' => $tanggal_selesai,
-            'wm' => $waktu_mulai,
-            'ws' => $waktu_selesai,
-            'kep' => $keperluan
-        ]);
+        $stmt = $pdo->prepare("SELECT * FROM view_jadwal_peminjaman ORDER BY tanggal_mulai DESC LIMIT ? OFFSET ?");
+        $stmt->execute([$limit, $offset]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Create peminjaman menggunakan stored procedure
+    public static function create($nama, $nip, $tanggal_mulai, $waktu_mulai, $waktu_selesai, $keperluan)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT tambah_peminjaman(?, ?, ?, ?, ?, ?) AS result");
+        $stmt->execute([$nama, $nip, $tanggal_mulai, $waktu_mulai, $waktu_selesai, $keperluan]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['result']; // 'OK' atau pesan error dari procedure
     }
 
     public static function setStatus($id, $status, $admin_id)

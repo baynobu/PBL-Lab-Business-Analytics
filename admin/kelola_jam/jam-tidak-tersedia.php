@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (!Peminjaman::isSlotAvailable($tanggal, $mulai, $selesai)) {
                     $alert = ['type' => 'danger', 'msg' => 'Jam tidak tersedia karena sudah ada peminjaman disetujui pada waktu tersebut!'];
                 } else {
-                    JamTidakTersedia::insert($tanggal, $mulai, $selesai, $alasan);
+                    JamTidakTersedia::insertSP($tanggal, $mulai, $selesai, $alasan);
                     logActivity("Tambah jam tidak tersedia: $tanggal $mulai-$selesai ($alasan)");
                     header('Location: jam-tidak-tersedia.php?success=1');
                     exit;

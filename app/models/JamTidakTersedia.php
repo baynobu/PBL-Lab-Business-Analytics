@@ -11,16 +11,14 @@ class JamTidakTersedia
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    public static function insert($tanggal, $mulai, $selesai, $alasan)
+    // Insert jam tidak tersedia menggunakan stored procedure
+    public static function insertSP($tanggal, $mulai, $selesai, $alasan = 'Tidak Tersedia')
     {
         global $pdo;
-        $stmt = $pdo->prepare("INSERT INTO jam_tidak_tersedia (tanggal, waktu_mulai, waktu_selesai, alasan, created_at) VALUES (:tanggal, :mulai, :selesai, :alasan, NOW())");
-        return $stmt->execute([
-            'tanggal' => $tanggal,
-            'mulai' => $mulai,
-            'selesai' => $selesai,
-            'alasan' => $alasan
-        ]);
+        $stmt = $pdo->prepare("SELECT set_jam_tidak_tersedia(?, ?, ?, ?) AS result");
+        $stmt->execute([$tanggal, $mulai, $selesai, $alasan]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['result'] ?? true;
     }
 
     public static function delete($id)
