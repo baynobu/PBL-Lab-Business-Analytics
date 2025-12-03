@@ -114,6 +114,12 @@ $adminMenus = [
     <nav class="navbar navbar-expand-lg bg-primary-custom navbar-dark py-3 fixed-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/lab-ba/public/index.php">
+          <?php if (!empty($S['logo_polinema'])): ?>
+            <img src="/lab-ba/public/uploads/logo/<?= htmlspecialchars($S['logo_polinema']) ?>" alt="Polinema" style="height:32px;max-width:40px;object-fit:contain;">
+          <?php endif; ?>
+          <?php if (!empty($S['logo_jti'])): ?>
+            <img src="/lab-ba/public/uploads/logo/<?= htmlspecialchars($S['logo_jti']) ?>" alt="JTI" style="height:32px;max-width:40px;object-fit:contain;">
+          <?php endif; ?>
           <?php if (!empty($S['logo'])): ?>
             <img src="/lab-ba/public/uploads/logo/<?= htmlspecialchars($S['logo']) ?>" alt="Logo" style="height:36px;max-width:48px;object-fit:contain;">
           <?php endif; ?>
@@ -132,6 +138,12 @@ $adminMenus = [
     <nav class="navbar navbar-expand-lg bg-primary-custom navbar-dark py-3 fixed-top shadow-sm">
       <div class="container-fluid">
         <a class="navbar-brand d-flex align-items-center gap-2" href="/lab-ba/public/index.php">
+          <?php if (!empty($S['logo_polinema'])): ?>
+            <img src="/lab-ba/public/uploads/logo/<?= htmlspecialchars($S['logo_polinema']) ?>" alt="Polinema" style="height:32px;max-width:40px;object-fit:contain;">
+          <?php endif; ?>
+          <?php if (!empty($S['logo_jti'])): ?>
+            <img src="/lab-ba/public/uploads/logo/<?= htmlspecialchars($S['logo_jti']) ?>" alt="JTI" style="height:32px;max-width:40px;object-fit:contain;">
+          <?php endif; ?>
           <?php if (!empty($S['logo'])): ?>
             <img src="/lab-ba/public/uploads/logo/<?= htmlspecialchars($S['logo']) ?>" alt="Logo" style="height:36px;max-width:48px;object-fit:contain;">
           <?php endif; ?>

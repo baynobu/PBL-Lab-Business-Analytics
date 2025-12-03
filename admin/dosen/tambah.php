@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $foto = $_FILES['foto']['name'];
     $tmp = $_FILES['foto']['tmp_name'];
     move_uploaded_file($tmp, "../../public/uploads/dosen/" . $foto);
-    Dosen::create($nama, $keahlian, $foto, $kategori_id);
+    Dosen::create($nama, $keahlian, $foto);
     logActivity("Menambah dosen: $nama");
     $message = "<div class='alert alert-success'>Dosen berhasil ditambahkan.</div>";
     // header("Location: manage.php");

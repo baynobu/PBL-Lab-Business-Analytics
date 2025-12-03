@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else {
         $foto = $d['foto'];
     }
-    Dosen::update($id, $nama, $keahlian, $foto, $kategori_id);
+    Dosen::update($id, $nama, $keahlian, $foto);
     logActivity("Mengedit dosen: {$d['nama']} → $nama");
     $d = Dosen::find($id); // refresh data
     $message = "<div class='alert alert-success'>Data dosen berhasil diupdate.</div>";

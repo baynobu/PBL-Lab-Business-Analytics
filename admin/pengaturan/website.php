@@ -19,14 +19,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $footer_text = $_POST['footer_text'];
     $copyright_text = $_POST['copyright_text'] ?? '';
 
+    $logo_polinema = null;
+    $logo_jti = null;
+    if (!empty($_FILES['logo_polinema']['name'])) {
+        $logo_polinema = $_FILES['logo_polinema']['name'];
+        $tmp = $_FILES['logo_polinema']['tmp_name'];
+        move_uploaded_file($tmp, "../../public/uploads/logo/" . $logo_polinema);
+    }
+    if (!empty($_FILES['logo_jti']['name'])) {
+        $logo_jti = $_FILES['logo_jti']['name'];
+        $tmp = $_FILES['logo_jti']['tmp_name'];
+        move_uploaded_file($tmp, "../../public/uploads/logo/" . $logo_jti);
+    }
+
     if (!empty($_FILES['logo']['name'])) {
         $logo = $_FILES['logo']['name'];
         $tmp = $_FILES['logo']['tmp_name'];
         move_uploaded_file($tmp, "../../public/uploads/logo/" . $logo);
-        Settings::update($site_name, $footer_text, $logo, $copyright_text);
+        Settings::update($site_name, $footer_text, $logo, $copyright_text, $logo_polinema, $logo_jti);
         logActivity("Mengubah pengaturan website + logo baru");
     } else {
-        Settings::update($site_name, $footer_text, null, $copyright_text);
+        Settings::update($site_name, $footer_text, null, $copyright_text, $logo_polinema, $logo_jti);
         logActivity("Mengubah pengaturan website");
     }
 
@@ -61,6 +74,20 @@ include "../../views/layouts/header.php";
                             <input type="file" name="logo" class="form-control rounded-pill">
                             <?php if (!empty($settings['logo'])): ?>
                                 <img src="../../public/uploads/logo/<?= htmlspecialchars($settings['logo']) ?>" alt="Logo" style="height:48px;max-width:120px;object-fit:contain;" class="mt-2">
+                            <?php endif; ?>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Logo Polinema</label>
+                            <input type="file" name="logo_polinema" class="form-control rounded-pill">
+                            <?php if (!empty($settings['logo_polinema'])): ?>
+                                <img src="../../public/uploads/logo/<?= htmlspecialchars($settings['logo_polinema']) ?>" alt="Logo Polinema" style="height:48px;max-width:120px;object-fit:contain;" class="mt-2">
+                            <?php endif; ?>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Logo JTI</label>
+                            <input type="file" name="logo_jti" class="form-control rounded-pill">
+                            <?php if (!empty($settings['logo_jti'])): ?>
+                                <img src="../../public/uploads/logo/<?= htmlspecialchars($settings['logo_jti']) ?>" alt="Logo JTI" style="height:48px;max-width:120px;object-fit:contain;" class="mt-2">
                             <?php endif; ?>
                         </div>
                         <div class="d-flex justify-content-end gap-2 mt-4">
