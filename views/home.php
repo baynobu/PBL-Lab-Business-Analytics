@@ -32,17 +32,41 @@
                 </div>
             </div>
             <div class="row" id="visimisi">
-                <div class="col-12">
-                    <h3 class="section-title">VISI DAN MISI</h3>
-                    <ul class="list-group list-group-flush mb-4">
-                        <?php foreach ($profilList as $p): ?>
-                            <?php if (strtolower($p['kategori']) == 'visi' || strtolower($p['kategori']) == 'misi'): ?>
-                                <li class="list-group-item bg-white"><strong><?= htmlspecialchars($p['kategori']) ?>:</strong> <?= nl2br($p['isi']); ?></li>
-                            <?php endif; ?>
-                        <?php endforeach; ?>
-                    </ul>
+    <div class="col-12">
+        <h3 class="section-title">VISI DAN MISI</h3>
+        <div class="row g-4 mb-4">
+            <?php
+            $visi = null;
+            $misi = null;
+            foreach ($profilList as $p) {
+                if (strtolower($p['kategori']) == 'visi') {
+                    $visi = $p;
+                } elseif (strtolower($p['kategori']) == 'misi') {
+                    $misi = $p;
+                }
+            }
+            ?>
+
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0 bg-light-blue">
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold text-primary-custom mb-3"><i class="bi bi-eye-fill me-2 text-accent"></i><?= htmlspecialchars($visi['kategori'] ?? 'Visi') ?></h4>
+                        <p class="card-text"><?= nl2br(htmlspecialchars($visi['isi'] ?? 'Belum ada data Visi.')) ?></p>
+                    </div>
                 </div>
             </div>
+
+            <div class="col-md-6">
+                <div class="card h-100 shadow-sm border-0 bg-light-blue">
+                    <div class="card-body">
+                        <h4 class="card-title fw-bold text-primary-custom mb-3"><i class="bi bi-bullseye me-2 text-accent"></i><?= htmlspecialchars($misi['kategori'] ?? 'Misi') ?></h4>
+                        <p class="card-text"><?= nl2br(htmlspecialchars($misi['isi'] ?? 'Belum ada data Misi.')) ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
         </div>
     </section>
 

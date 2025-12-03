@@ -22,6 +22,15 @@ section {
   color: #3fa2f7 !important;
 }
 
+.login-btn {
+  background-image: linear-gradient(135deg, #54a9ff, #114b8c);
+  color: #fff !important;
+  padding: 0.625rem 1rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 10px 25px rgba(16, 75, 140, 0.25);
+}
+
+
 /* HERO SECTION */
 .hero {
   background: #0a2a43;
@@ -33,6 +42,8 @@ section {
   max-width: 300px;
   margin-bottom: 20px;
 }
+
+
 
 /* SECTION HEADING */
 .section-title {

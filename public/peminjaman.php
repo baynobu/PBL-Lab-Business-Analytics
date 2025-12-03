@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (Peminjaman::isSlotBlockedByAdmin($tanggal, $mulai, $selesai)) {
       $alert = ['type' => 'warning', 'msg' => 'Slot tidak tersedia, silakan pilih waktu lain.'];
     } else {
-      Peminjaman::create($nama, $nip, $tanggal, $tanggal, $mulai, $selesai, $keperluan);
+      Peminjaman::create($nama, $nip, $tanggal, $mulai, $selesai, $keperluan);
       header('Location: peminjaman.php?success=1');
       exit;
     }

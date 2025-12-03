@@ -3,12 +3,13 @@
 
 <section class="bg-white py-5 min-vh-100">
     <div class="container">
-        <div class="text-center mb-5">
-            <h2 class="fw-bold mb-1 text-primary-custom">Galeri Kegiatan Laboratorium</h2>
-            <div class="text-muted">Dokumentasi aktivitas, event, dan suasana Laboratorium Business Analytics</div>
-        </div>
-        <div class="row g-4">
-            <?php $galeriList = Galeri::all();
+        <div class="section-container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold mb-1 text-primary-custom">Galeri Kegiatan Laboratorium</h2>
+                <div class="text-muted">Dokumentasi aktivitas, event, dan suasana Laboratorium Business Analytics</div>
+            </div>
+            <div class="row g-4">
+                <?php $galeriList = Galeri::all();
             foreach ($galeriList as $g): ?>
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 shadow-sm border-0 galeri-card" style="cursor:pointer;" data-bs-toggle="modal" data-bs-target="#galeriModal<?= $g['id'] ?>">
@@ -22,7 +23,8 @@
                         </div>
                     </div>
                 </div>
-            <?php endforeach; ?>
+                <?php endforeach; ?>
+            </div>
         </div>
 
         <!-- Galeri Modals -->
@@ -41,16 +43,38 @@
                             <div class="mb-3 text-muted small"><i class="bi bi-calendar-event me-1"></i> <?= htmlspecialchars($g['tanggal'] ?? '-') ?></div>
                             <div class="mb-3 fs-5 px-2 py-3 rounded-3" style="background:rgba(63,162,247,0.07);display:inline-block;min-width:180px;">
                                 <i class="bi bi-chat-left-text me-2 text-accent"></i><?= nl2br(htmlspecialchars($g['deskripsi'] ?? '')) ?>
+                                <a href="index.php" class="btn btn-accent w-100 mt-2 fw-bold rounded-pill">Kembali Ke Beranda</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+            <a href="index.php" class="btn btn-return mt-4">Kembali Ke Beranda</a>
+        <div class="text-center mt-3">
     </div>
+    </div>
+
 </section>
 
 <style>
+    .section-container {
+        /* Bayangan awal yang timbul */
+        box-shadow: 0 4px 12px rgba(10, 42, 67, 0.08), 0 1px 4px rgba(63, 162, 247, 0.05);
+        /* Border Light Blue Tipis */
+        border: 1px solid rgba(63, 162, 247, 0.2) !important;
+        /* Membulatkan sudut */
+        border-radius: 1.5rem; 
+        padding: 3rem !important; /* Tambah padding agar konten tidak mepet border */
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    /* Efek hover pada Container (opsional, untuk tampilan lebih menarik) */
+    .section-container:hover {
+        box-shadow: 0 8px 18px rgba(10, 42, 67, 0.1), 0 2px 6px rgba(63, 162, 247, 0.1);
+    }
+
     .text-primary-custom {
         color: #0A2A43 !important;
     }
@@ -91,6 +115,17 @@
             padding: 1.5rem !important;
         }
     }
+
+    .btn-return {
+    display: inline-block;
+    padding: 0.7rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    background-image: linear-gradient(135deg, rgb(255, 0 , 0), rgb(192, 20, 20));
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(16, 75, 140, 0.25);
+    transition: 0.3s ease;
+}
 
     @keyframes galeriPop {
         0% {

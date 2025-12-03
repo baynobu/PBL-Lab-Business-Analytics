@@ -133,4 +133,30 @@ class Publikasi
         $stmt = $pdo->prepare("DELETE FROM publikasi WHERE id = ?");
         $stmt->execute([$id]);
     }
+
+    // Ambil data publikasi lengkap dari view
+    public static function allLengkap($limit = 100, $offset = 0)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT * FROM view_publikasi_lengkap ORDER BY tanggal DESC LIMIT ? OFFSET ?");
+        $stmt->execute([$limit, $offset]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    // Create publikasi menggunakan stored procedure
+    public static function createSP($data, $kategori_ids, $dosen_ids)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT tambah_publikasi(?, ?, ?, ?, ?, ?) AS result");
+        $stmt->execute([
+            $data['judul'],
+            $data['tanggal'],
+            $data['file'],
+            $data['link'],
+            $kategori_ids,
+            $dosen_ids
+        ]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['result'];
+    }
 }

@@ -44,8 +44,8 @@ include "../../views/layouts/header.php";
                             <input type="password" name="password" class="form-control rounded-pill">
                         </div>
                         <div class="d-flex justify-content-end gap-2 mt-4">
-                            <a href="manage.php" class="btn btn-secondary">Kembali</a>
-                            <button type="submit" class="btn btn-success">Update</button>
+                            <a href="javascript:history.back()" class="btn btn-outline-danger rounded-pill">Kembali</a>
+                            <button type="submit" class="btn rounded-pill btn-success">Simpan</button>
                         </div>
                     </form>
                 </div>

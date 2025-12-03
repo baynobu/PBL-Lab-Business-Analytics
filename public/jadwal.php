@@ -53,7 +53,7 @@ $data = Peminjaman::all();
     </div>
     <div class="container mb-5">
         <div class="d-grid mt-4">
-            <a href="index.php" class="btn btn-secondary btn-lg rounded-pill fw-bold shadow-sm">Kembali</a>
+            <a href="index.php" class="btn btn-outline-danger rounded-pill fw-bold shadow-sm">Kembali</a>
         </div>
     </div>
 
