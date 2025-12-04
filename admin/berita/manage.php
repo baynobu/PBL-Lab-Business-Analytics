@@ -125,6 +125,12 @@ include "../../views/layouts/header.php";
         <!-- Header Page -->
         <div class="row align-items-center mb-4 g-3">
             <div class="col-md-6">
+            <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="/lab-ba/admin/dashboard.php" class="text-decoration-none text-muted">Dashboard</a></li>
+                        <li class="breadcrumb-item active text-primary-custom" aria-current="page">Manajemen Berita</li>
+                    </ol>
+                </nav>
                 <h3 class="fw-bold text-primary-custom mb-1">Manajemen Berita</h3>
                 <p class="text-muted small mb-0">Kelola artikel berita, pengumuman, dan informasi terbaru.</p>
             </div>

@@ -111,7 +111,7 @@ include "../../views/layouts/header.php";
         text-align: center;
         transition: all 0.3s;
     }
-    
+
     .upload-box:hover {
         border-color: var(--accent);
         background-color: #f0f7ff;
@@ -142,7 +142,8 @@ include "../../views/layouts/header.php";
             <div class="col-lg-10">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-2">
-                        <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none text-muted">Manajemen Berita</a></li>
+                        <li class="breadcrumb-item"><a href="/lab-ba/admin/dashboard.php" class="text-decoration-none text-muted">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="manage.php" class="text-decoration-none text-muted">Manajemen Berita</a></li>
                         <li class="breadcrumb-item active text-primary-custom" aria-current="page">Tambah Baru</li>
                     </ol>
                 </nav>
@@ -153,7 +154,7 @@ include "../../views/layouts/header.php";
         <div class="row justify-content-center">
             <div class="col-lg-10">
                 <div class="section-container">
-                    
+
                     <!-- Alert Messages -->
                     <?php if ($errors): ?>
                         <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm" role="alert">
@@ -170,13 +171,13 @@ include "../../views/layouts/header.php";
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     <?php endif; ?>
-                    
+
                     <form method="post" enctype="multipart/form-data" autocomplete="off">
                         <div class="row g-5">
                             <!-- Kolom Kiri: Informasi Utama -->
                             <div class="col-md-6">
                                 <h5 class="mb-4 pb-2 border-bottom text-muted small fw-bold text-uppercase">Informasi Berita</h5>
-                                
+
                                 <div class="mb-3">
                                     <label class="form-label">Judul Berita <span class="text-danger">*</span></label>
                                     <input type="text" name="judul" class="form-control" required placeholder="Contoh: Kunjungan Industri ke Jakarta" value="<?= htmlspecialchars($_POST['judul'] ?? '') ?>">

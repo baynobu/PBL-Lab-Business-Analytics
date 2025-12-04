@@ -151,9 +151,10 @@ include "../../views/layouts/header.php";
         <!-- Breadcrumb & Header -->
         <div class="row justify-content-center mb-4">
             <div class="col-lg-10">
-                <nav aria-label="breadcrumb">
+            <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-2">
-                        <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none text-muted">Manajemen Publikasi</a></li>
+                        <li class="breadcrumb-item"><a href="/lab-ba/admin/dashboard.php" class="text-decoration-none text-muted">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="manage.php" class="text-decoration-none text-muted">Manajemen Publikasi</a></li>
                         <li class="breadcrumb-item active text-primary-custom" aria-current="page">Edit Publikasi</li>
                     </ol>
                 </nav>

@@ -125,6 +125,17 @@ include "../../views/layouts/header.php";
 </style>
 
 <section class="py-5 min-vh-100">
+<div class="row justify-content-center mb-4">
+            <div class="col-lg-6">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="/lab-ba/admin/dashboard.php" class="text-decoration-none text-muted">Dashboard</a></li>
+                        <li class="breadcrumb-item active text-primary-custom" aria-current="page">Manajemen Kategori</li>
+                    </ol>
+                </nav>
+                <h3 class="fw-bold text-primary-custom">Tambah Kategori Baru</h3>
+            </div>
+        </div>
     <div class="container">
         <!-- Header Page -->
         <div class="row align-items-center mb-4 g-3">

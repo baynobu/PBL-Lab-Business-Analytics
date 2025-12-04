@@ -87,7 +87,8 @@ include "../../views/layouts/header.php";
             <div class="col-lg-6">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-2">
-                        <li class="breadcrumb-item"><a href="index.php" class="text-decoration-none text-muted">Manajemen Kategori</a></li>
+                        <li class="breadcrumb-item"><a href="/lab-ba/admin/dashboard.php" class="text-decoration-none text-muted">Dashboard</a></li>
+                        <li class="breadcrumb-item"><a href="manage.php" class="text-decoration-none text-muted">Manajemen Kategori</a></li>
                         <li class="breadcrumb-item active text-primary-custom" aria-current="page">Tambah Baru</li>
                     </ol>
                 </nav>
