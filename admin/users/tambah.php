@@ -8,9 +8,8 @@ $message = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     Admin::create($_POST['username'], $_POST['password'], $_POST['nama']);
     logActivity("Menambah admin baru: {$_POST['username']}");
-    $message = "<div class='alert alert-success'>Admin berhasil ditambahkan.</div>";
-    // header("Location: manage.php");
-    // exit;
+    header("Location: manage.php");
+    exit;
 }
 
 include "../../views/layouts/header.php";

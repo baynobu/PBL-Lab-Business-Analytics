@@ -260,7 +260,8 @@ include "../../views/layouts/header.php";
         <!-- Back Button -->
         <div class="mt-4">
             <a href="../dashboard.php" class="btn btn-link text-decoration-none text-muted fw-bold ps-0 hover-primary">
-                <i class="bi bi-arrow-left me-2"></i>Kembali ke Dashboard
+            <a href="javascript:history.back()" class="btn btn-outline-danger rounded-pill px-4">
+            Kembali
             </a>
         </div>
     </div>

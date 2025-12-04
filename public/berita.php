@@ -273,7 +273,7 @@ include __DIR__ . '/../views/layouts/header.php';
         <!-- Footer Action -->
         <div class="text-center mt-5">
             <a href="index.php" class="btn btn-link text-decoration-none text-muted fw-bold">
-                <i class="bi bi-arrow-left me-2"></i>Kembali Ke Beranda
+            <a href="index.php" class="btn btn-accent w-150 mt-2 fw-bold rounded-pill">Kembali Ke Beranda</a>
             </a>
         </div>
     </div>

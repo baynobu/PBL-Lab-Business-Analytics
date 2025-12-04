@@ -77,7 +77,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 
                 <div class="text-center mt-5">
                     <a href="index.php" class="btn-link-custom text-decoration-none fs-6">
-                        <i class="bi bi-arrow-left me-1"></i> Kembali Ke Beranda
+                    <a href="index.php" class="btn btn-accent w-150 mt-2 fw-bold rounded-pill">Kembali Ke Beranda</a>
                     </a>
                 </div>
             </div>

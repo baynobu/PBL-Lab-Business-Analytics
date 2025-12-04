@@ -11,6 +11,23 @@ include "../../views/layouts/header.php";
 <section class="py-5 min-vh-100 bg-light">
     <div class="container">
 
+        <!-- Messages -->
+        <?php if (isset($_SESSION['success'])): ?>
+            <div class="alert alert-success alert-dismissible fade show rounded-3" role="alert">
+                <?= $_SESSION['success'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php unset($_SESSION['success']); ?>
+        <?php endif; ?>
+        
+        <?php if (isset($_SESSION['error'])): ?>
+            <div class="alert alert-danger alert-dismissible fade show rounded-3" role="alert">
+                <?= $_SESSION['error'] ?>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            <?php unset($_SESSION['error']); ?>
+        <?php endif; ?>
+
         <!-- Header -->
         <div class="d-flex flex-wrap align-items-center justify-content-between mb-4 gap-2">
             <h3 class="fw-bold text-primary-custom mb-0">Manajemen Admin</h3>
@@ -46,11 +63,13 @@ include "../../views/layouts/header.php";
                                         </a>
 
                                         <?php if ($a['id'] != $_SESSION['admin_id']): ?>
-                                            <a href="hapus.php?id=<?= $a['id']; ?>" 
-                                               class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm ms-1"
-                                               onclick="return confirm('Hapus admin ini?')">
+                                            <form action="hapus.php" method="POST" style="display: inline;">
+                                            <input type="hidden" name="id" value="<?= $a['id']; ?>">
+                                            <button type="submit" class="btn btn-danger btn-sm rounded-pill px-3 shadow-sm ms-1" 
+                                                    onclick="return confirm('Hapus admin ini?')">
                                                 <i class="bi bi-trash"></i> Hapus
-                                            </a>
+                                            </button>
+                                        </form>
                                         <?php endif; ?>
                                     </td>
                                 </tr>
@@ -61,8 +80,8 @@ include "../../views/layouts/header.php";
                 </div>
 
                 <div class="mt-4">
-                    <a href="javascript:history.back()" class="btn btn-outline-danger rounded-pill px-4">
-                        Kembali
+                    <a href="/lab-ba/admin/dashboard.php" class="btn btn-outline-danger rounded-pill px-4">
+                        Kembali ke Dashboard
                     </a>
                 </div>
 

@@ -43,14 +43,14 @@
                             <div class="mb-3 text-muted small"><i class="bi bi-calendar-event me-1"></i> <?= htmlspecialchars($g['tanggal'] ?? '-') ?></div>
                             <div class="mb-3 fs-5 px-2 py-3 rounded-3" style="background:rgba(63,162,247,0.07);display:inline-block;min-width:180px;">
                                 <i class="bi bi-chat-left-text me-2 text-accent"></i><?= nl2br(htmlspecialchars($g['deskripsi'] ?? '')) ?>
-                                <a href="index.php" class="btn btn-accent w-100 mt-2 fw-bold rounded-pill">Kembali Ke Beranda</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <?php endforeach; ?>
-            <a href="index.php" class="btn btn-return mt-4">Kembali Ke Beranda</a>
+            <a href="index.php" class="btn btn-accent w-150 mt-2 fw-bold rounded-pill">Kembali Ke Beranda</a>
+            
         <div class="text-center mt-3">
     </div>
     </div>
