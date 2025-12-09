@@ -221,7 +221,10 @@ CREATE TABLE public.site_settings (
     updated_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP,
     copyright_text text,
     logo_polinema character varying(255),
-    logo_jti character varying(255)
+    logo_jti character varying(255),
+    social_facebook text,
+    social_instagram text,
+    social_youtube text
 );
 ALTER TABLE public.site_settings OWNER TO postgres;
 
@@ -327,12 +330,15 @@ INSERT INTO public.profil_lab (id, kategori, judul, isi, created_at, updated_at)
   (3, 'Fasilitas', 'Fasilitas Utama', 'Ruang kolaborasi, workstation high-performance, dataset internal.', CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 -- 5. SITE SETTINGS (dengan logo_polinema & logo_jti)
-INSERT INTO public.site_settings (id, site_name, logo, footer_text, copyright_text, logo_polinema, logo_jti, updated_at)
+INSERT INTO public.site_settings (id, site_name, logo, footer_text, copyright_text, logo_polinema, logo_jti, social_facebook, social_instagram, social_youtube, updated_at)
 VALUES (1, 'Laboratorium Business Analytics', 'logo.png',
         'Laboratorium Business Analytics - All Rights Reserved',
         '© 2025 Laboratorium Business Analytics',
         'logo-polinema.png',
         'logo-jti.png',
+        'https://facebook.com/',
+        'https://instagram.com/',
+        'https://youtube.com/',
         CURRENT_TIMESTAMP);
 
 -- 6. SETTINGS (key unik)
