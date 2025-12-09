@@ -1,4 +1,4 @@
-<?php 
+<?php
 // Pastikan path ini sesuai dengan struktur folder Anda saat di-include
 // Menggunakan __DIR__ agar lebih robust jika di-include dari berbagai lokasi
 if (file_exists(__DIR__ . '/../../app/models/Settings.php')) {
@@ -27,7 +27,8 @@ if (!$S) {
 <style>
     /* Footer Styling */
     .footer-wrapper {
-        background-color: #0A2A43; /* Primary Custom Color */
+        background-color: #0A2A43;
+        /* Primary Custom Color */
         color: #e0e6ed;
         font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
         font-size: 0.95rem;
@@ -62,7 +63,8 @@ if (!$S) {
         display: block;
         width: 30px;
         height: 2px;
-        background-color: #3FA2F7; /* Accent Color */
+        background-color: #3FA2F7;
+        /* Accent Color */
         margin-top: 5px;
         border-radius: 2px;
     }
@@ -104,14 +106,14 @@ if (!$S) {
         height: 45px;
         width: auto;
         object-fit: contain;
-        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
     }
 </style>
 
 <footer class="footer-wrapper pt-5 pb-4 mt-auto">
     <div class="container">
         <div class="row gy-4 justify-content-between">
-            
+
             <!-- 1. Brand & About -->
             <div class="col-lg-5 col-md-6">
                 <div class="d-flex align-items-center gap-3 mb-4">
@@ -122,21 +124,21 @@ if (!$S) {
                             <i class="bi bi-bar-chart-fill fs-4 text-primary"></i>
                         </div>
                     <?php endif; ?>
-                    
+
                     <div>
                         <h5 class="footer-brand-title mb-0"><?= htmlspecialchars($S['site_name'] ?? 'Lab Business Analytics') ?></h5>
                         <small class="text-white-50" style="font-size: 0.75rem;">Politeknik Negeri Malang</small>
                     </div>
                 </div>
-                
+
                 <p class="footer-desc mb-4">
                     <?= nl2br(htmlspecialchars($S['footer_text'] ?? 'Laboratorium Business Analytics Universitas Anda')) ?>
                 </p>
 
                 <div class="d-flex gap-3">
-                    <a href="#" class="text-white-50 hover-white text-decoration-none"><i class="bi bi-instagram fs-5"></i></a>
-                    <a href="#" class="text-white-50 hover-white text-decoration-none"><i class="bi bi-facebook fs-5"></i></a>
-                    <a href="#" class="text-white-50 hover-white text-decoration-none"><i class="bi bi-youtube fs-5"></i></a>
+                    <a href="<?= !empty($S['social_instagram']) ? htmlspecialchars($S['social_instagram']) : '#' ?>" target="_blank" class="text-white-50 hover-white text-decoration-none"><i class="bi bi-instagram fs-5"></i></a>
+                    <a href="<?= !empty($S['social_facebook']) ? htmlspecialchars($S['social_facebook']) : '#' ?>" target="_blank" class="text-white-50 hover-white text-decoration-none"><i class="bi bi-facebook fs-5"></i></a>
+                    <a href="<?= !empty($S['social_youtube']) ? htmlspecialchars($S['social_youtube']) : '#' ?>" target="_blank" class="text-white-50 hover-white text-decoration-none"><i class="bi bi-youtube fs-5"></i></a>
                     <a href="#" class="text-white-50 hover-white text-decoration-none"><i class="bi bi-globe fs-5"></i></a>
                 </div>
             </div>
@@ -187,4 +189,5 @@ if (!$S) {
 <!-- Bootstrap JS -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

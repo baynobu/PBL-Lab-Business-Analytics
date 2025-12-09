@@ -4,20 +4,28 @@ checkAdminLogin();
 require_once "../../app/models/Settings.php";
 require_once "../../app/utils/log.php";
 
+
 $settings = Settings::get();
 if (!$settings) {
     $settings = [
         'site_name' => '',
         'footer_text' => '',
         'logo' => '',
-        'copyright_text' => ''
+        'copyright_text' => '',
+        'social_instagram' => '',
+        'social_facebook' => '',
+        'social_youtube' => ''
     ];
 }
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $site_name = $_POST['site_name'];
     $footer_text = $_POST['footer_text'];
     $copyright_text = $_POST['copyright_text'] ?? '';
+    $social_instagram = $_POST['social_instagram'] ?? '';
+    $social_facebook = $_POST['social_facebook'] ?? '';
+    $social_youtube = $_POST['social_youtube'] ?? '';
 
     $logo_polinema = null;
     $logo_jti = null;
@@ -31,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $logo_polinema = time() . '_polinema_' . $_FILES['logo_polinema']['name'];
         move_uploaded_file($_FILES['logo_polinema']['tmp_name'], $targetDir . $logo_polinema);
     }
-    
+
     if (!empty($_FILES['logo_jti']['name'])) {
         $logo_jti = time() . '_jti_' . $_FILES['logo_jti']['name'];
         move_uploaded_file($_FILES['logo_jti']['tmp_name'], $targetDir . $logo_jti);
@@ -43,14 +51,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Logic update di model harus menyesuaikan apakah file diganti atau tidak
-    // Di sini diasumsikan Model menangani logika "jika null, pakai yang lama" 
-    // Atau kita kirim null dan Model handle.
-    // Berdasarkan kode asli Anda:
     if ($logo) {
-        Settings::update($site_name, $footer_text, $logo, $copyright_text, $logo_polinema, $logo_jti);
+        Settings::update($site_name, $footer_text, $logo, $copyright_text, $logo_polinema, $logo_jti, $social_instagram, $social_facebook, $social_youtube);
         logActivity("Mengubah pengaturan website + logo utama");
     } else {
-        Settings::update($site_name, $footer_text, null, $copyright_text, $logo_polinema, $logo_jti);
+        Settings::update($site_name, $footer_text, null, $copyright_text, $logo_polinema, $logo_jti, $social_instagram, $social_facebook, $social_youtube);
         logActivity("Mengubah pengaturan website");
     }
 
@@ -127,7 +132,7 @@ include "../../views/layouts/header.php";
 
     .logo-upload-container:hover {
         border-color: var(--accent);
-        box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
 
     .current-logo-box {
@@ -190,16 +195,14 @@ include "../../views/layouts/header.php";
         <form method="POST" enctype="multipart/form-data" autocomplete="off">
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    
+
                     <!-- 1. General Information -->
                     <div class="section-card">
                         <h5 class="section-header"><i class="bi bi-globe me-2"></i>Informasi Umum</h5>
-                        
                         <div class="mb-3">
                             <label class="form-label">Nama Website / Laboratorium</label>
                             <input type="text" name="site_name" class="form-control" value="<?= htmlspecialchars($settings['site_name']) ?>" required placeholder="Contoh: Laboratorium Business Analytics">
                         </div>
-
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Footer Text (Ringkas)</label>
@@ -208,6 +211,20 @@ include "../../views/layouts/header.php";
                             <div class="col-md-6 mb-3">
                                 <label class="form-label">Copyright Text</label>
                                 <input type="text" name="copyright_text" class="form-control" value="<?= htmlspecialchars($settings['copyright_text'] ?? '') ?>" placeholder="© 2025 Lab BA. All rights reserved.">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Instagram</label>
+                                <input type="text" name="social_instagram" class="form-control" value="<?= htmlspecialchars($settings['social_instagram'] ?? '') ?>" placeholder="Link Instagram">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">Facebook</label>
+                                <input type="text" name="social_facebook" class="form-control" value="<?= htmlspecialchars($settings['social_facebook'] ?? '') ?>" placeholder="Link Facebook">
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label">YouTube</label>
+                                <input type="text" name="social_youtube" class="form-control" value="<?= htmlspecialchars($settings['social_youtube'] ?? '') ?>" placeholder="Link YouTube">
                             </div>
                         </div>
                     </div>
@@ -289,4 +306,4 @@ include "../../views/layouts/header.php";
             </div>
         </form>
     </div>
-</section>  
+</section>

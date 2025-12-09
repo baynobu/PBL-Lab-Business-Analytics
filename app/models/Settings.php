@@ -11,7 +11,7 @@ class Settings
         return $pdo->query("SELECT * FROM site_settings LIMIT 1")->fetch(PDO::FETCH_ASSOC);
     }
 
-    public static function update($site_name, $footer_text, $logo = null, $copyright_text = null, $logo_polinema = null, $logo_jti = null)
+    public static function update($site_name, $footer_text, $logo = null, $copyright_text = null, $logo_polinema = null, $logo_jti = null, $social_instagram = null, $social_facebook = null, $social_youtube = null)
     {
         global $pdo;
         $fields = "site_name = :site_name, footer_text = :footer_text, updated_at = NOW()";
@@ -31,6 +31,18 @@ class Settings
         if ($copyright_text !== null) {
             $fields .= ", copyright_text = :copyright_text";
             $params['copyright_text'] = $copyright_text;
+        }
+        if ($social_instagram !== null) {
+            $fields .= ", social_instagram = :social_instagram";
+            $params['social_instagram'] = $social_instagram;
+        }
+        if ($social_facebook !== null) {
+            $fields .= ", social_facebook = :social_facebook";
+            $params['social_facebook'] = $social_facebook;
+        }
+        if ($social_youtube !== null) {
+            $fields .= ", social_youtube = :social_youtube";
+            $params['social_youtube'] = $social_youtube;
         }
         $stmt = $pdo->prepare("UPDATE site_settings SET $fields");
         return $stmt->execute($params);
