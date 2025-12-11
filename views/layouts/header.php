@@ -16,6 +16,10 @@ if (!$S) {
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab Business Analytics</title>
+  <link rel="icon" type="image/png" href="/lab-ba/public/uploads/logo/Jti_polinema.svg.png">
+
+  <!-- Favicon -->
+  
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- Google Fonts: Poppins, Inter, Rubik -->

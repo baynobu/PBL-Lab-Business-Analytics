@@ -273,12 +273,12 @@ include "../views/layouts/header.php";
                     <button class="btn btn-outline-primary btn-sm rounded-circle" style="width:40px;height:40px;" type="button" data-bs-target="#carouselDosen" data-bs-slide="next"><i class="bi bi-chevron-right"></i></button>
                 </div>
                 <<div class="text-center mt-4">
-                <a href="/lab-ba/public/dosen.php" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
-                    Lihat Semua Dosen <i class="bi bi-arrow-right ms-1"></i>
-                </a>
-            </div>
+                    <a href="/lab-ba/public/dosen.php" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
+                        Lihat Semua Dosen <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
             </div>
         </div>
+    </div>
     </div>
 </section>
 
@@ -336,10 +336,10 @@ include "../views/layouts/header.php";
                     <?php endforeach; ?>
                 </div>
                 <div class="text-center mt-4">
-                <a href="/lab-ba/public/publikasi.php" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
-                    Lihat Semua Publikasi <i class="bi bi-arrow-right ms-1"></i>
-                </a>
-            </div>
+                    <a href="/lab-ba/public/publikasi.php" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
+                        Lihat Semua Publikasi <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
             <?php endif; ?>
         </div>
     </div>
@@ -380,10 +380,10 @@ include "../views/layouts/header.php";
                     <?php endforeach; ?>
                 </div>
                 <div class="text-center mt-4">
-                <a href="/lab-ba/public/berita.php" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
-                    Lihat Semua Berita <i class="bi bi-arrow-right ms-1"></i>
-                </a>
-            </div>
+                    <a href="/lab-ba/public/berita.php" class="btn btn-outline-primary rounded-pill px-4 py-2 fw-bold shadow-sm">
+                        Lihat Semua Berita <i class="bi bi-arrow-right ms-1"></i>
+                    </a>
+                </div>
             <?php endif; ?>
         </div>
     </div>
@@ -458,78 +458,79 @@ include "../views/layouts/header.php";
         <?php endforeach; ?>
         </div>
     </section>
+</section>
 
-    <!-- 7. FOOTER CONTACT -->
-    <section id="kontak" class="text-white py-5" style="background-color: var(--primary-color);">
-        <div class="container">
-            <div class="row gy-5 align-items-center">
-                <div class="col-lg-5">
-                    <h2 class="fw-bold mb-4">Hubungi Kami</h2>
-                    <p class="text-white-50 mb-4">Kami siap membantu kebutuhan akademik dan penelitian Anda di Laboratorium Business Analytics.</p>
+<!-- 7. FOOTER CONTACT -->
+<section id="kontak" class="text-white py-5" style="background-color: var(--primary-color);">
+    <div class="container">
+        <div class="row gy-5 align-items-center">
+            <div class="col-lg-5">
+                <h2 class="fw-bold mb-4">Hubungi Kami</h2>
+                <p class="text-white-50 mb-4">Kami siap membantu kebutuhan akademik dan penelitian Anda di Laboratorium Business Analytics.</p>
 
-                    <?php $kontak = KontakLab::get(); ?>
-                    <div class="d-flex mb-4">
-                        <div class="icon-box me-3 rounded-circle bg-white bg-opacity-10 d-flex align-items-center justify-content-center" style="width:45px;height:45px;flex-shrink:0;">
-                            <i class="bi bi-geo-alt-fill text-accent"></i>
-                        </div>
-                        <div>
-                            <h6 class="fw-bold mb-1">Alamat</h6>
-                            <span class="small text-white-50"><?= nl2br(htmlspecialchars($kontak['alamat'] ?? '-')) ?></span>
-                        </div>
+                <?php $kontak = KontakLab::get(); ?>
+                <div class="d-flex mb-4">
+                    <div class="icon-box me-3 rounded-circle bg-white bg-opacity-10 d-flex align-items-center justify-content-center" style="width:45px;height:45px;flex-shrink:0;">
+                        <i class="bi bi-geo-alt-fill text-accent"></i>
                     </div>
-
-                    <div class="d-flex mb-4">
-                        <div class="icon-box me-3 rounded-circle bg-white bg-opacity-10 d-flex align-items-center justify-content-center" style="width:45px;height:45px;flex-shrink:0;">
-                            <i class="bi bi-envelope-fill text-accent"></i>
-                        </div>
-                        <div>
-                            <h6 class="fw-bold mb-1">Email</h6>
-                            <a href="mailto:<?= htmlspecialchars($kontak['email'] ?? '') ?>" class="text-white-50 text-decoration-none small"><?= htmlspecialchars($kontak['email'] ?? '-') ?></a>
-                        </div>
-                    </div>
-
-                    <div class="d-flex mb-4">
-                        <div class="icon-box me-3 rounded-circle bg-white bg-opacity-10 d-flex align-items-center justify-content-center" style="width:45px;height:45px;flex-shrink:0;">
-                            <i class="bi bi-telephone-fill text-accent"></i>
-                        </div>
-                        <div>
-                            <h6 class="fw-bold mb-1">Telepon/WhatsApp</h6>
-                            <span class="small text-white-50"><?= htmlspecialchars($kontak['telepon'] ?? '-') ?></span>
-                        </div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Alamat</h6>
+                        <span class="small text-white-50"><?= nl2br(htmlspecialchars($kontak['alamat'] ?? '-')) ?></span>
                     </div>
                 </div>
 
-                <div class="col-lg-6 offset-lg-1">
-                    <div class="section-card p-1 bg-white border-0 shadow-lg">
-                        <?php if (!empty($kontak['maps_embed'])): ?>
-                            <div class="ratio ratio-16x9 rounded-3 overflow-hidden"> <?= $kontak['maps_embed'] ?> </div>
-                        <?php else: ?>
-                            <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center rounded-3">
-                                <span class="text-muted">Peta tidak tersedia</span>
-                            </div>
-                        <?php endif; ?>
+                <div class="d-flex mb-4">
+                    <div class="icon-box me-3 rounded-circle bg-white bg-opacity-10 d-flex align-items-center justify-content-center" style="width:45px;height:45px;flex-shrink:0;">
+                        <i class="bi bi-envelope-fill text-accent"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Email</h6>
+                        <a href="mailto:<?= htmlspecialchars($kontak['email'] ?? '') ?>" class="text-white-50 text-decoration-none small"><?= htmlspecialchars($kontak['email'] ?? '-') ?></a>
+                    </div>
+                </div>
+
+                <div class="d-flex mb-4">
+                    <div class="icon-box me-3 rounded-circle bg-white bg-opacity-10 d-flex align-items-center justify-content-center" style="width:45px;height:45px;flex-shrink:0;">
+                        <i class="bi bi-telephone-fill text-accent"></i>
+                    </div>
+                    <div>
+                        <h6 class="fw-bold mb-1">Telepon/WhatsApp</h6>
+                        <span class="small text-white-50"><?= htmlspecialchars($kontak['telepon'] ?? '-') ?></span>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-
-    <!-- Modals Dosen -->
-    <?php foreach ($dosenList as $d): ?>
-        <div class="modal fade" id="dosenModal<?= $d['id'] ?>" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content rounded-4 border-0">
-                    <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <?php if (!empty($d['foto'])): ?><img src="/lab-ba/public/uploads/dosen/<?= htmlspecialchars($d['foto']) ?>" class="rounded-circle mb-3 shadow-sm" style="width:120px;height:120px;object-fit:cover;"><?php endif; ?>
-                        <h4 class="fw-bold text-primary mb-1"><?= htmlspecialchars($d['nama']) ?></h4>
-                        <span class="badge bg-light text-primary mb-3"><?= htmlspecialchars($d['keahlian']) ?></span>
-                        <p class="text-muted px-4"><?= nl2br(htmlspecialchars($d['deskripsi'] ?? '')) ?></p>
-                    </div>
+            <div class="col-lg-6 offset-lg-1">
+                <div class="section-card p-1 bg-white border-0 shadow-lg">
+                    <?php if (!empty($kontak['maps_embed'])): ?>
+                        <div class="ratio ratio-16x9 rounded-3 overflow-hidden"> <?= $kontak['maps_embed'] ?> </div>
+                    <?php else: ?>
+                        <div class="ratio ratio-16x9 bg-light d-flex align-items-center justify-content-center rounded-3">
+                            <span class="text-muted">Peta tidak tersedia</span>
+                        </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
-    <?php endforeach; ?>
+    </div>
+</section>
 
-    <?php include "../views/layouts/footer.php"; ?>
+
+<!-- Modals Dosen -->
+<?php foreach ($dosenList as $d): ?>
+    <div class="modal fade" id="dosenModal<?= $d['id'] ?>" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content rounded-4 border-0">
+                <div class="modal-header border-0"><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+                <div class="modal-body text-center pb-5">
+                    <?php if (!empty($d['foto'])): ?><img src="/lab-ba/public/uploads/dosen/<?= htmlspecialchars($d['foto']) ?>" class="rounded-circle mb-3 shadow-sm" style="width:120px;height:120px;object-fit:cover;"><?php endif; ?>
+                    <h4 class="fw-bold text-primary mb-1"><?= htmlspecialchars($d['nama']) ?></h4>
+                    <span class="badge bg-light text-primary mb-3"><?= htmlspecialchars($d['keahlian']) ?></span>
+                    <p class="text-muted px-4"><?= nl2br(htmlspecialchars($d['deskripsi'] ?? '')) ?></p>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endforeach; ?>
+
+<?php include "../views/layouts/footer.php"; ?>

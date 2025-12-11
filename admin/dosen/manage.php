@@ -82,7 +82,7 @@ include "../../views/layouts/header.php";
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid #fff;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     .avatar-placeholder {
@@ -97,7 +97,7 @@ include "../../views/layouts/header.php";
         font-weight: 700;
         font-size: 1.1rem;
         border: 2px solid #fff;
-        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
     }
 
     /* Buttons */
@@ -125,23 +125,19 @@ include "../../views/layouts/header.php";
 </style>
 
 <section class="py-5 min-vh-100">
-<div class="row justify-content-center mb-4">
-            <div class="col-lg-6">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb mb-2">
-                        <li class="breadcrumb-item"><a href="/lab-ba/admin/dashboard.php" class="text-decoration-none text-muted">Dashboard</a></li>
-                        <li class="breadcrumb-item active text-primary-custom" aria-current="page">Manajemen Kategori</li>
-                    </ol>
-                </nav>
-                <h3 class="fw-bold text-primary-custom">Tambah Kategori Baru</h3>
-            </div>
-        </div>
     <div class="container">
+
         <!-- Header Page -->
         <div class="row align-items-center mb-4 g-3">
             <div class="col-md-6">
-                <h3 class="fw-bold" style="color: #0A2A43;">Manajemen Dosen</h3>
-                <p class="text-muted small mb-0">Kelola data dosen dan bidang keahliannya.</p>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb mb-2">
+                        <li class="breadcrumb-item"><a href="/lab-ba/admin/dashboard.php" class="text-decoration-none text-muted">Dashboard</a></li>
+                        <li class="breadcrumb-item active text-primary-custom" aria-current="page">Manajemen Dosen</li>
+                    </ol>
+                </nav>
+                <h3 class="fw-bold text-primary-custom mb-1">Manajemen Dosen</h3>
+                <p class="text-muted small mb-0">Kelola data dosen.</p>
             </div>
             <div class="col-md-6 text-md-end">
                 <a href="tambah.php" class="btn btn-accent rounded-pill">
@@ -222,7 +218,7 @@ include "../../views/layouts/header.php";
                             <?php endforeach; ?>
                         </tbody>
                     </table>
-                    
+
                     <!-- Pesan jika pencarian tidak ditemukan -->
                     <div id="noResults" class="text-center py-5 d-none">
                         <i class="bi bi-search text-muted opacity-50 mb-2 fs-3"></i>
@@ -235,50 +231,51 @@ include "../../views/layouts/header.php";
         <!-- Back Button -->
         <div class="mt-4">
             <a href="../dashboard.php" class="btn btn-link text-decoration-none text-muted fw-bold ps-0 hover-primary">
-            <a href="/lab-ba/admin/dashboard.php" class="btn btn-outline-danger rounded-pill px-4">
-                        Kembali ke Dashboard
-            </a>
+                <a href="/lab-ba/admin/dashboard.php" class="btn btn-outline-danger rounded-pill px-4">
+                    Kembali ke Dashboard
+                </a>
         </div>
     </div>
-</section>
+    </div>
+</section
 
-<!-- Script Pencarian Cepat (Client Side) -->
+    <!-- Script Pencarian Cepat (Client Side) -->
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.getElementById('searchInput');
-    const table = document.getElementById('dosenTable');
-    const noResults = document.getElementById('noResults');
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('searchInput');
+        const table = document.getElementById('dosenTable');
+        const noResults = document.getElementById('noResults');
 
-    if (searchInput && table) {
-        searchInput.addEventListener('keyup', function() {
-            const filter = this.value.toLowerCase();
-            const rows = table.getElementsByTagName('tr');
-            let hasVisibleRow = false;
+        if (searchInput && table) {
+            searchInput.addEventListener('keyup', function() {
+                const filter = this.value.toLowerCase();
+                const rows = table.getElementsByTagName('tr');
+                let hasVisibleRow = false;
 
-            // Loop semua baris tbody (mulai index 1 karena index 0 adalah thead di struktur HTML collection tr table)
-            // Tapi karena getElementsByTagName('tr') mengambil head juga, kita perlu hati-hati.
-            // Lebih aman querySelectorAll di tbody.
-            
-            const bodyRows = table.querySelectorAll('tbody tr');
-            
-            bodyRows.forEach(row => {
-                const text = row.innerText.toLowerCase();
-                if (text.includes(filter)) {
-                    row.style.display = '';
-                    hasVisibleRow = true;
+                // Loop semua baris tbody (mulai index 1 karena index 0 adalah thead di struktur HTML collection tr table)
+                // Tapi karena getElementsByTagName('tr') mengambil head juga, kita perlu hati-hati.
+                // Lebih aman querySelectorAll di tbody.
+
+                const bodyRows = table.querySelectorAll('tbody tr');
+
+                bodyRows.forEach(row => {
+                    const text = row.innerText.toLowerCase();
+                    if (text.includes(filter)) {
+                        row.style.display = '';
+                        hasVisibleRow = true;
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+
+                if (!hasVisibleRow) {
+                    noResults.classList.remove('d-none');
+                    table.classList.add('d-none'); // Sembunyikan header tabel jika kosong
                 } else {
-                    row.style.display = 'none';
+                    noResults.classList.add('d-none');
+                    table.classList.remove('d-none');
                 }
             });
-
-            if (!hasVisibleRow) {
-                noResults.classList.remove('d-none');
-                table.classList.add('d-none'); // Sembunyikan header tabel jika kosong
-            } else {
-                noResults.classList.add('d-none');
-                table.classList.remove('d-none');
-            }
-        });
-    }
-});
+        }
+    });
 </script>
